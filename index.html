@@ -618,4 +618,25 @@
   <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Kim Govi · Instructor Liason / Coordinator of Contract Training </div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873084">(301) 387-3084</a><br>✉️ <a href="/cdn-cgi/l/email-protection#a5eeccc8c7c0d7c9dc8be2cad3cce5c2c4d7d7c0d1d1c6cac9c9c0c2c08bc0c1d0"><span class="__cf_email__" data-cfemail="5c1735313e392e3025721b332a351c3b3d2e2e3928283f333030393b3972393829">[email&#160;protected]</span></a></div></div></div>
 
   <div class="section-title" style="font-size:17px; color:var(--ember-light);">Emergency Contacts</div>
-  <div class=
+  <div class="contact-card"><div class="contact-avatar command">🚑</div><div><div class="contact-name">Garrett Regional Medical Center</div><div class="contact-role">Nearest Hospital · Oakland, MD</div><div class="contact-info">251 North Fourth Street · <a href="tel:3015332121">(301) 533-2121</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar command">🚒</div><div><div class="contact-name">Emergency Services</div><div class="contact-role">Police / Fire / EMS</div><div class="contact-info">📞 <a href="tel:911">911</a> &nbsp;·&nbsp; Campus: <a href="tel:3013873000">(301) 387-3000</a></div></div></div>
+</div>
+
+<div class="footer">
+  Mid-Atlantic Wildfire Training Academy · June 8–12, 2026<br>
+  Hosted by Garrett College · McHenry, MD<br>
+  <a href="mailto:fireacademy@garrettcollege.edu">fireacademy@garrettcollege.edu</a>
+</div>
+
+<script>
+  const order = ["home","courses","schedule","map","meals","housing","wifi","nearby","command"];
+  function showSection(id) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.querySelectorAll(".nav-tab")[order.indexOf(id)].classList.add("active");
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
