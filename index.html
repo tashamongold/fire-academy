@@ -625,6 +625,9 @@
 <div class="footer">
   Mid-Atlantic Wildfire Training Academy · June 8–12, 2026<br>
   Hosted by Garrett College · McHenry, MD<br>
+<div class="footer">
+  Mid-Atlantic Wildfire Training Academy · June 8-12, 2026<br>
+  Hosted by Garrett College · McHenry, MD<br>
   fireacademy@garrettcollege.edu
 </div>
 
@@ -632,4 +635,11 @@
   const order = ["home","courses","schedule","map","meals","housing","wifi","nearby","command"];
   function showSection(id) {
     document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-    document.querySe
+    document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.querySelectorAll(".nav-tab")[order.indexOf(id)].classList.add("active");
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
