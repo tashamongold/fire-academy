@@ -84,9 +84,24 @@
   .now-badge { display: inline-block; background: var(--ember); color: white; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; animation: pulse 2s infinite; }
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
 
-  .course-card { background: var(--forest-deep); border-radius: 8px; padding: 13px; margin-bottom: 10px; border-top: 3px solid var(--forest-green); }
-  .course-card.field { border-top-color: var(--ember); }
-  .course-card.virtual { border-top-color: #5B9BD5; }
+  /* ── FLIP CARD STYLES ───────────────────────────────────────────── */
+  .flip-card-container { perspective: 1000px; margin-bottom: 10px; }
+  .flip-card { position: relative; width: 100%; min-height: 120px; transition: transform 0.5s; transform-style: preserve-3d; cursor: pointer; }
+  .flip-card.flipped { transform: rotateY(180deg); }
+  .flip-card-front, .flip-card-back { position: absolute; width: 100%; min-height: 120px; backface-visibility: hidden; border-radius: 8px; padding: 13px; background: var(--forest-deep); }
+  .flip-card-front { border-top: 3px solid var(--forest-green); z-index: 2; }
+  .flip-card-front.has-field { border-top-color: var(--ember); }
+  .flip-card-back { transform: rotateY(180deg); border-top: 3px solid var(--sage); }
+  .flip-card-back.has-field { border-top-color: var(--ember); }
+  
+  /* Make flip card height dynamic */
+  .flip-card-container { height: auto; }
+  .flip-card { height: auto; min-height: 0; }
+  .flip-card:not(.flipped) .flip-card-back { position: relative; visibility: hidden; height: 0; min-height: 0; padding: 0; overflow: hidden; }
+  .flip-card:not(.flipped) .flip-card-front { position: relative; }
+  .flip-card.flipped .flip-card-front { position: absolute; visibility: hidden; }
+  .flip-card.flipped .flip-card-back { position: relative; visibility: visible; height: auto; padding: 13px; }
+
   .course-num { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px; }
   .course-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--smoke-white); margin-bottom: 6px; line-height: 1.2; }
   .course-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
@@ -96,6 +111,18 @@
   .tag-location { background: #2A2A1A; color: var(--ash-gold); }
   .tag-field { background: #3A2010; color: var(--ember-light); }
   .tag-virtual { background: #101A2A; color: #7BBAE8; }
+  .flip-hint { font-size: 10px; color: var(--text-muted); margin-top: 8px; text-align: right; }
+
+  /* Back of card styles */
+  .back-section { margin-bottom: 10px; }
+  .back-section:last-child { margin-bottom: 0; }
+  .back-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ember-light); margin-bottom: 3px; }
+  .back-value { font-size: 13px; color: #B8C8B8; line-height: 1.5; }
+  .back-value.room { color: var(--ash-gold); font-weight: 600; }
+  .back-field-day { background: rgba(212,88,10,0.15); border-radius: 4px; padding: 6px 8px; margin-top: 4px; }
+  .back-field-day .back-label { color: var(--ember-light); }
+  .prework-yes { color: var(--ember-light); }
+  .prework-no { color: var(--moss); }
 
   .map-container { background: var(--forest-deep); border-radius: 8px; overflow: hidden; margin-bottom: 14px; }
   .map-image { width: 100%; display: block; }
@@ -272,148 +299,443 @@
 <!-- COURSES -->
 <div class="section" id="courses">
   <div class="section-title">2026 Courses</div>
-  <div class="info-box"><strong>AM Sessions:</strong> 8:00 AM – 12:00 PM &nbsp;|&nbsp; <strong>PM Sessions:</strong> 1:00 PM – 5:00 PM<br>Specific room numbers and field sites will be posted after May 14th.</div>
+  <div class="info-box"><strong>AM Sessions:</strong> 8:00 AM – 12:00 PM &nbsp;|&nbsp; <strong>PM Sessions:</strong> 1:00 PM – 5:00 PM<br>Tap any course card to see description and details.</div>
 
-  <div class="course-card">
-    <div class="course-num">MT-206</div>
-    <div class="course-title">FI-210 · Wildfire Origin and Cause Determination</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">5 Days · Mon–Fri</span>
-      <span class="course-tag tag-instructor">Jake Novitsky (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+  <!-- MT-206: FI-210 Wildfire Origin & Cause -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-206</div>
+        <div class="course-title">FI-210 · Wildfire Origin and Cause Determination</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">5 Days · Mon–Fri</span>
+          <span class="course-tag tag-instructor">Jake Novitsky (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Learn wildland fire investigation methods, evidence collection, documentation, and related legal procedures through lectures, presentations, and field exercises.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Tuesday</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card">
-    <div class="course-num">MT-260</div>
-    <div class="course-title">S-131 · Firefighter Type 1</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">2 Days · Tue–Wed</span>
-      <span class="course-tag tag-instructor">Kelly Broadbear (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+
+  <!-- MT-260: S-131 Firefighter Type 1 -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front">
+        <div class="course-num">MT-260</div>
+        <div class="course-title">S-131 · Firefighter Type 1</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">2 Days · Tue–Wed</span>
+          <span class="course-tag tag-instructor">Kelly Broadbear (Lead)</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Covers operational leadership, communications, LCES, and tactical decision-making for FFT1 and ICT5 positions.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card">
-    <div class="course-num">MT-292</div>
-    <div class="course-title">Rx-300 · Prescribed Fire Burn Boss</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">5 Days · Mon–Fri</span>
-      <span class="course-tag tag-instructor">Tom Liogys (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+
+  <!-- MT-292: RX-300 Prescribed Fire Burn Boss -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front">
+        <div class="course-num">MT-292</div>
+        <div class="course-title">Rx-300 · Prescribed Fire Burn Boss</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">5 Days · Mon–Fri</span>
+          <span class="course-tag tag-instructor">Tom Liogys (Lead)</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Prepare, critically evaluate, and implement prescribed fire plans. Must pass implementation assessment and final presentation.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card">
-    <div class="course-num">MT-254</div>
-    <div class="course-title">S-130 · Basic Wildland Firefighter (Full Class)</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">4 Days · Mon–Thu</span>
-      <span class="course-tag tag-instructor">Shannon Wolfe (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
-      <span class="course-tag tag-field">Pre-work: L-180 / S-190</span>
+
+  <!-- MT-254: S-130 Full Class -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-254</div>
+        <div class="course-title">S-130 · Basic Wildland Firefighter (Full Class)</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">4 Days · Mon–Thu</span>
+          <span class="course-tag tag-instructor">Shannon Wolfe (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Basic firefighting skills including fireline construction, tool use, and safety protocols.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed PM, Thu</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes (complete L-180 and S-190 online)</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card field">
-    <div class="course-num">MT-288</div>
-    <div class="course-title">S-130 · Basic Wildland Firefighter Field Day</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">1 Day · Friday</span>
-      <span class="course-tag tag-instructor">Shannon Wolfe (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
-      <span class="course-tag tag-field">Pre-work: L-180 / S-190 / S-130 online</span>
-    </div>
-    <div style="margin-top:6px; font-size:12px; color:var(--text-muted);">For self-study students only</div>
-  </div>
-  <div class="course-card">
-    <div class="course-num">MT-223</div>
-    <div class="course-title">S-200 · Initial Attack Incident Commander</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">2 Days · Wed–Thu</span>
-      <span class="course-tag tag-instructor">Jeremy Waite (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
-    </div>
-  </div>
-  <div class="course-card">
-    <div class="course-num">MT-261</div>
-    <div class="course-title">S-211 · Portable Pumps</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">3 Days · Mon–Wed</span>
-      <span class="course-tag tag-instructor">Chad Northcraft (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
-    </div>
-  </div>
-  <div class="course-card">
-    <div class="course-num">MT-293</div>
-    <div class="course-title">S-230 · Crew Boss Single Resource</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">2 Days · Wed–Thu</span>
-      <span class="course-tag tag-instructor">Chris Franeck (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+
+  <!-- MT-288: S-130 Field Day Only -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-288</div>
+        <div class="course-title">S-130 · Basic Wildland Firefighter Field Day</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">1 Day · Friday</span>
+          <span class="course-tag tag-instructor">Shannon Wolfe (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">All-day field exercise for students who completed the online classroom portion. Bring rain gear, leather gloves, and lace-up boots.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD (Field Site)</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Friday (all day)</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes (complete L-180, S-190, and S-130 online)</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card field">
-    <div class="course-num">MT-294</div>
-    <div class="course-title">S-112 · Introduction to Chainsaw Operations</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">3 Days · Tue–Thu</span>
-      <span class="course-tag tag-instructor">Aaron Cook (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+
+  <!-- MT-223: S-200 Initial Attack IC -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front">
+        <div class="course-num">MT-223</div>
+        <div class="course-title">S-200 · Initial Attack Incident Commander</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">2 Days · Wed–Thu</span>
+          <span class="course-tag tag-instructor">Jeremy Waite (Lead)</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Training for ICT4 position covering foundation skills, intelligence gathering, size-up, plan development, and incident management.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card field">
-    <div class="course-num">MT-295</div>
-    <div class="course-title">ENOPS · Engine Operations</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">5 Days · Mon–Fri</span>
-      <span class="course-tag tag-instructor">Todd Breininger (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+
+  <!-- MT-261: S-211 Portable Pumps -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-261</div>
+        <div class="course-title">S-211 · Portable Pumps and Water Use</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">3 Days · Mon–Wed</span>
+          <span class="course-tag tag-instructor">Chad Northcraft (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Design, set up, operate, troubleshoot, and shut down portable water delivery systems.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Tuesday</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card">
-    <div class="course-num">MT-296</div>
-    <div class="course-title">Wilderness First Aid</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">3 Days · Mon–Wed</span>
-      <span class="course-tag tag-instructor">Jim Boling (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+
+  <!-- MT-293: S-230 Crew Boss -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front">
+        <div class="course-num">MT-293</div>
+        <div class="course-title">S-230 · Crew Boss Single Resource</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">2 Days · Wed–Thu</span>
+          <span class="course-tag tag-instructor">Chris Franeck (Lead)</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Blended course covering crew boss duties including briefings, task assignment, fireline duties, mop-up, and firing operations.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
-    <div style="margin-top:6px; font-size:12px; color:var(--text-muted);">Note: Higher course cost — contractor taught</div>
   </div>
-  <div class="course-card field">
-    <div class="course-num">MT-282</div>
-    <div class="course-title">UTV ROHVA A</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">1 Day · Wednesday AM</span>
-      <span class="course-tag tag-instructor">Tom Shuman (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+
+  <!-- MT-294: S-112 Chainsaw Operations -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-294</div>
+        <div class="course-title">S-112 · Introduction to Chainsaw Operations</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">3 Days · Tue–Thu</span>
+          <span class="course-tag tag-instructor">Aaron Cook (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Blended course providing knowledge and skills for the Basic Faller (FAL3) position.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed, Thu</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card field">
-    <div class="course-num">MT-282-02</div>
-    <div class="course-title">UTV ROHVA B</div>
-    <div class="course-meta">
-      <span class="course-tag tag-days">1 Day · Wednesday PM</span>
-      <span class="course-tag tag-instructor">Tom Shuman (Lead)</span>
-      <span class="course-tag tag-location">GC Campus</span>
+
+  <!-- MT-295: ENOP Engine Operations -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-295</div>
+        <div class="course-title">ENOPS · Engine Operations</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">5 Days · Mon–Fri</span>
+          <span class="course-tag tag-instructor">Todd Breininger (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Learn to drive engines to fire locations, operate pumps and hose lays, inspect and service equipment, and coordinate with adjacent forces.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed, Thu, Fri</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
   </div>
-  <div class="course-card virtual">
-    <div class="course-num">MT-248</div>
-    <div class="course-title">S-270 · Basic Air Ops</div>
-    <div class="course-meta">
-      <span class="course-tag tag-virtual">Virtual · May 19–20</span>
-      <span class="course-tag tag-instructor">Rob Gill (Lead)</span>
+
+  <!-- MT-296: Wilderness First Aid -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-296</div>
+        <div class="course-title">Wilderness First Aid</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">3 Days · Mon–Wed</span>
+          <span class="course-tag tag-instructor">Jim Boling (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Emergency first aid principles for wilderness and remote environments. Mix of classroom instruction and realistic outdoor scenarios.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Tue PM, Wed AM</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
-    <div style="margin-top:6px; font-size:12px; color:#7BBAE8;">This course takes place before the Academy — May 19 &amp; 20, online.</div>
   </div>
-  <div class="course-card virtual">
-    <div class="course-num">MT-297</div>
-    <div class="course-title">S-372 · Helicopter Manager</div>
-    <div class="course-meta">
-      <span class="course-tag tag-virtual">Off-site · June 1–4</span>
-      <span class="course-tag tag-instructor">Angie Ruble (Lead)</span>
-      <span class="course-tag tag-location">Coyle Airfield, Barnegat, NJ</span>
+
+  <!-- MT-282: ROHVA A -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-282</div>
+        <div class="course-title">UTV ROHVA A</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">1 Day · Wednesday AM</span>
+          <span class="course-tag tag-instructor">Tom Shuman (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Hands-on ROV driver training on a closed range. Approximately 3 hours of driving time.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD (Field Site)</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed AM</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
     </div>
-    <div style="margin-top:6px; font-size:12px; color:#7BBAE8;">This course takes place before the Academy — June 1–4 in Barnegat, NJ.</div>
   </div>
+
+  <!-- MT-282-02: ROHVA B -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-282-02</div>
+        <div class="course-title">UTV ROHVA B</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">1 Day · Wednesday PM</span>
+          <span class="course-tag tag-instructor">Tom Shuman (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Hands-on ROV driver training on a closed range. Approximately 3 hours of driving time.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD (Field Site)</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed PM</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
   <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
@@ -782,21 +1104,31 @@
   }
 
   function toggleAccordion(btn) {
-  const body = btn.nextElementSibling;
-  const isOpen = btn.classList.contains('open');
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
 
-  // Close all open accordions first
-  document.querySelectorAll('.accordion-btn.open').forEach(b => {
-    b.classList.remove('open');
-    b.nextElementSibling.classList.remove('open');
-  });
+    // Close all open accordions first
+    document.querySelectorAll('.accordion-btn.open').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
 
-  // If it was closed, open it
-  if (!isOpen) {
-    btn.classList.add('open');
-    body.classList.add('open');
+    // If it was closed, open it
+    if (!isOpen) {
+      btn.classList.add('open');
+      body.classList.add('open');
+    }
   }
-}
+
+  // ── FLIP CARD FUNCTION ──────────────────────────────────────────
+  function flipCard(card) {
+    // Close any other open flip cards first
+    document.querySelectorAll('.flip-card.flipped').forEach(c => {
+      if (c !== card) c.classList.remove('flipped');
+    });
+    // Toggle this card
+    card.classList.toggle('flipped');
+  }
 
   // ── BACK TO TOP ─────────────────────────────────────────────────
   function scrollToTop() {
