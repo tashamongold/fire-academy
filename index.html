@@ -185,25 +185,6 @@
 .accordion-btn.open .accordion-arrow { transform: rotate(180deg); }
 .accordion-body { display: none; background: var(--forest-dark); border-left: 4px solid var(--ember); padding: 10px 14px; font-size: 13px; color: #B8C8B8; line-height: 1.5; }
 .accordion-body.open { display: block; }
-
-Then add this JavaScript anywhere inside your existing <script> block:
-javascriptfunction toggleAccordion(btn) {
-  const body = btn.nextElementSibling;
-  const isOpen = btn.classList.contains('open');
-
-  // Close all open accordions first
-  document.querySelectorAll('.accordion-btn.open').forEach(b => {
-    b.classList.remove('open');
-    b.nextElementSibling.classList.remove('open');
-  });
-
-  // If it was closed, open it
-  if (!isOpen) {
-    btn.classList.add('open');
-    body.classList.add('open');
-  }
-}
-That is all three pieces. The HTML replaces the whole Nearby section, the CSS goes in your style block, and the JavaScript goes inside your existing script tag.Sonnet 4.6
 </style>
 </head>
 <body>
@@ -799,6 +780,23 @@ That is all three pieces. The HTML replaces the whole Nearby section, the CSS go
     document.querySelectorAll(".nav-tab")[order.indexOf(id)].classList.add("active");
     window.scrollTo(0, 0);
   }
+
+  function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+
+  // Close all open accordions first
+  document.querySelectorAll('.accordion-btn.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+
+  // If it was closed, open it
+  if (!isOpen) {
+    btn.classList.add('open');
+    body.classList.add('open');
+  }
+}
 
   // ── BACK TO TOP ─────────────────────────────────────────────────
   function scrollToTop() {
