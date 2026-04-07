@@ -74,11 +74,15 @@
 
   .schedule-day { margin-bottom: 18px; }
   .day-header { background: linear-gradient(90deg, var(--ember), var(--ember-light)); padding: 8px 14px; border-radius: 6px 6px 0 0; font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px; color: var(--white); }
-  .schedule-item { background: var(--forest-deep); border-bottom: 1px solid var(--forest-mid); padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start; }
+  .schedule-item { background: var(--forest-deep); border-bottom: 1px solid var(--forest-mid); padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start; transition: background 0.3s; }
   .schedule-item:last-child { border-radius: 0 0 6px 6px; border-bottom: none; }
+  .schedule-item.current-event { background: rgba(212,88,10,0.18); border-left: 3px solid var(--ember); }
+  .schedule-item.current-event .schedule-time { color: var(--ember-light); }
   .schedule-time { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; color: var(--ash-gold); min-width: 65px; flex-shrink: 0; padding-top: 1px; }
   .schedule-desc { font-size: 13px; color: #B8C8B8; line-height: 1.4; }
   .schedule-desc strong { color: var(--smoke-white); font-size: 14px; display: block; margin-bottom: 1px; }
+  .now-badge { display: inline-block; background: var(--ember); color: white; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
 
   .course-card { background: var(--forest-deep); border-radius: 8px; padding: 13px; margin-bottom: 10px; border-top: 3px solid var(--forest-green); }
   .course-card.field { border-top-color: var(--ember); }
@@ -111,10 +115,17 @@
   .contact-role { font-size: 12px; color: var(--ember-light); margin-top: 1px; font-weight: 600; }
   .contact-info { font-size: 12px; color: #B8C8B8; margin-top: 4px; line-height: 1.5; }
 
+  /* WIFI BOX */
   .wifi-box { background: var(--forest-deep); border: 2px solid var(--forest-green); border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 14px; }
   .wifi-icon { font-size: 32px; margin-bottom: 8px; }
   .wifi-network { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
-  .wifi-value { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ash-gold); background: var(--forest-dark); border-radius: 6px; padding: 6px 14px; display: inline-block; margin: 4px 0 12px; min-width: 160px; }
+  .wifi-value { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ash-gold); background: var(--forest-dark); border-radius: 6px; padding: 6px 14px; display: inline-block; margin: 4px 0 8px; min-width: 160px; }
+
+  /* COPY BUTTON */
+  .copy-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--forest-green); color: var(--smoke-white); border: none; border-radius: 6px; padding: 8px 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; margin: 4px 0 12px; transition: background 0.2s, transform 0.1s; }
+  .copy-btn:hover { background: var(--forest-light); }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.copied { background: var(--sage); color: var(--forest-dark); }
 
   .meal-plan-header { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--forest-mid); border-radius: 8px 8px 0 0; overflow: hidden; margin-top: 10px; }
   .meal-plan-header div { background: var(--forest-green); padding: 8px 6px; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--smoke-white); }
@@ -151,6 +162,19 @@
   .footer { text-align: center; padding: 18px; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--forest-mid); margin-top: 8px; }
   a { color: var(--ember-light); text-decoration: none; }
   a:hover { text-decoration: underline; }
+
+  /* COUNTDOWN */
+  .countdown-box { background: var(--forest-deep); border: 2px solid var(--forest-green); border-radius: 10px; padding: 16px; margin-bottom: 14px; text-align: center; }
+  .countdown-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .countdown-units { display: flex; justify-content: center; gap: 8px; }
+  .countdown-unit { background: var(--forest-dark); border-radius: 8px; padding: 10px 8px 8px; min-width: 58px; }
+  .countdown-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: var(--ash-gold); letter-spacing: 2px; }
+  .countdown-unit-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+  .countdown-started { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--ember-light); letter-spacing: 2px; padding: 8px 0; }
+
+  /* BACK TO TOP BUTTON */
+  .back-to-top { display: block; width: 100%; margin: 18px 0 4px; padding: 11px; background: var(--forest-deep); border: 1px solid var(--forest-mid); border-radius: 8px; color: var(--text-muted); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+  .back-to-top:hover { color: var(--smoke-white); border-color: var(--forest-green); }
 </style>
 </head>
 <body>
@@ -187,6 +211,20 @@
 <!-- HOME -->
 <div class="section active" id="home">
   <div class="section-title">Welcome</div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-box">
+    <div class="countdown-label">🔥 Fire Academy Begins In</div>
+    <div id="countdown-display">
+      <div class="countdown-units">
+        <div class="countdown-unit"><div class="countdown-num" id="cd-days">--</div><div class="countdown-unit-label">Days</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-hours">--</div><div class="countdown-unit-label">Hours</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-mins">--</div><div class="countdown-unit-label">Mins</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-secs">--</div><div class="countdown-unit-label">Secs</div></div>
+      </div>
+    </div>
+  </div>
+
   <div class="alert-box">
     <div class="alert-icon">🚨</div>
     <div class="alert-text"><strong>Emergency:</strong> Call 911 &nbsp;·&nbsp; Campus Security: <a href="tel:2403215799">(240) 321-5799</a></div>
@@ -218,6 +256,7 @@
     <div class="card-title">Room 111 · GIEC (Building 100)</div>
     <div class="card-body">All students, instructors, and staff check in here. Coffee available. MAFA and GC staff on hand for questions.</div>
   </div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <!-- COURSES -->
@@ -234,7 +273,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card">
     <div class="course-num">MT-260</div>
     <div class="course-title">S-131 · Firefighter Type 1</div>
@@ -244,7 +282,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card">
     <div class="course-num">MT-292</div>
     <div class="course-title">Rx-300 · Prescribed Fire Burn Boss</div>
@@ -254,7 +291,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card">
     <div class="course-num">MT-254</div>
     <div class="course-title">S-130 · Basic Wildland Firefighter (Full Class)</div>
@@ -265,7 +301,6 @@
       <span class="course-tag tag-field">Pre-work: L-180 / S-190</span>
     </div>
   </div>
-
   <div class="course-card field">
     <div class="course-num">MT-288</div>
     <div class="course-title">S-130 · Basic Wildland Firefighter Field Day</div>
@@ -277,7 +312,6 @@
     </div>
     <div style="margin-top:6px; font-size:12px; color:var(--text-muted);">For self-study students only</div>
   </div>
-
   <div class="course-card">
     <div class="course-num">MT-223</div>
     <div class="course-title">S-200 · Initial Attack Incident Commander</div>
@@ -287,7 +321,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card">
     <div class="course-num">MT-261</div>
     <div class="course-title">S-211 · Portable Pumps</div>
@@ -297,7 +330,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card">
     <div class="course-num">MT-293</div>
     <div class="course-title">S-230 · Crew Boss Single Resource</div>
@@ -307,7 +339,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card field">
     <div class="course-num">MT-294</div>
     <div class="course-title">S-112 · Introduction to Chainsaw Operations</div>
@@ -317,7 +348,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card field">
     <div class="course-num">MT-295</div>
     <div class="course-title">ENOPS · Engine Operations</div>
@@ -327,7 +357,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card">
     <div class="course-num">MT-296</div>
     <div class="course-title">Wilderness First Aid</div>
@@ -338,7 +367,6 @@
     </div>
     <div style="margin-top:6px; font-size:12px; color:var(--text-muted);">Note: Higher course cost — contractor taught</div>
   </div>
-
   <div class="course-card field">
     <div class="course-num">MT-282</div>
     <div class="course-title">UTV ROHVA A</div>
@@ -348,7 +376,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card field">
     <div class="course-num">MT-282-02</div>
     <div class="course-title">UTV ROHVA B</div>
@@ -358,7 +385,6 @@
       <span class="course-tag tag-location">GC Campus</span>
     </div>
   </div>
-
   <div class="course-card virtual">
     <div class="course-num">MT-248</div>
     <div class="course-title">S-270 · Basic Air Ops</div>
@@ -368,7 +394,6 @@
     </div>
     <div style="margin-top:6px; font-size:12px; color:#7BBAE8;">This course takes place before the Academy — May 19 &amp; 20, online.</div>
   </div>
-
   <div class="course-card virtual">
     <div class="course-num">MT-297</div>
     <div class="course-title">S-372 · Helicopter Manager</div>
@@ -379,6 +404,7 @@
     </div>
     <div style="margin-top:6px; font-size:12px; color:#7BBAE8;">This course takes place before the Academy — June 1–4 in Barnegat, NJ.</div>
   </div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <!-- SCHEDULE -->
@@ -391,59 +417,61 @@
     <table class="icp-table" style="margin-top:8px;">
       <thead><tr><th>Day</th><th>Hours</th></tr></thead>
       <tbody>
-        <tr><td>Sun, June 8</td><td>3:00 PM – 7:00 PM</td></tr>
-        <tr><td>Mon, June 9</td><td>6:30 AM – 7:00 PM</td></tr>
-        <tr><td>Tue, June 10</td><td>6:30 AM – 7:00 PM</td></tr>
-        <tr><td>Wed, June 11</td><td>6:30 AM – 5:00 PM*</td></tr>
-        <tr><td>Thu, June 12</td><td>7:00 AM – 7:00 PM</td></tr>
-        <tr><td>Fri, June 13</td><td>7:00 AM – 4:30 PM</td></tr>
+        <tr><td>Sun, June 7</td><td>3:00 PM – 7:00 PM</td></tr>
+        <tr><td>Mon, June 8</td><td>6:30 AM – 7:00 PM</td></tr>
+        <tr><td>Tue, June 9</td><td>6:30 AM – 7:00 PM</td></tr>
+        <tr><td>Wed, June 10</td><td>6:30 AM – 5:00 PM*</td></tr>
+        <tr><td>Thu, June 11</td><td>7:00 AM – 7:00 PM</td></tr>
+        <tr><td>Fri, June 12</td><td>7:00 AM – 4:30 PM</td></tr>
       </tbody>
     </table>
     <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">* Wednesday on-call 5–7 PM due to BBQ. Security covers arrivals after 7 PM on all days.</div>
   </div>
 
+  <!-- Schedule items have data-start and data-end in 24h minutes from midnight for highlighting -->
   <div class="schedule-day">
     <div class="day-header">Sunday, June 8 — Arrival Day</div>
-    <div class="schedule-item"><div class="schedule-time">3:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong>Room 111, GIEC (Building 100)</div></div>
-    <div class="schedule-item"><div class="schedule-time">Evening</div><div class="schedule-desc"><strong>🏷 Silent Auction Set-Up</strong>Room 111, GIEC (Building 100) — open for browsing through Wednesday BBQ</div></div>
-    <div class="schedule-item"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong>Security covers arrivals after hours</div></div>
+    <div class="schedule-item" data-date="2026-06-08" data-start="900" data-end="1140"><div class="schedule-time">3:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong>Room 111, GIEC (Building 100)</div></div>
+    <div class="schedule-item" data-date="2026-06-08" data-start="1140" data-end="1200"><div class="schedule-time">Evening</div><div class="schedule-desc"><strong>🏷 Silent Auction Set-Up</strong>Room 111, GIEC (Building 100) — open for browsing through Wednesday BBQ</div></div>
+    <div class="schedule-item" data-date="2026-06-08" data-start="1140" data-end="1439"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong>Security covers arrivals after hours</div></div>
   </div>
 
   <div class="schedule-day">
     <div class="day-header">Monday–Tuesday · June 9–10</div>
-    <div class="schedule-item"><div class="schedule-time">6:30 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong>Room 111, GIEC (Building 100)</div></div>
-    <div class="schedule-item"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong>See Courses tab for your class</div></div>
-    <div class="schedule-item"><div class="schedule-time">12:00 PM</div><div class="schedule-desc"><strong>Lunch</strong>See Meals tab for plan details</div></div>
-    <div class="schedule-item"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">5:00 PM</div><div class="schedule-desc"><strong>Sessions End</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="390" data-end="480"><div class="schedule-time">6:30 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong>Room 111, GIEC (Building 100)</div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="480" data-end="720"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong>See Courses tab for your class</div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="720" data-end="780"><div class="schedule-time">12:00 PM</div><div class="schedule-desc"><strong>Lunch</strong>See Meals tab for plan details</div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="780" data-end="1020"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="1020" data-end="1140"><div class="schedule-time">5:00 PM</div><div class="schedule-desc"><strong>Sessions End</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="1140" data-end="1439"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong></div></div>
   </div>
 
   <div class="schedule-day">
     <div class="day-header">Wednesday, June 11 — BBQ Night</div>
-    <div class="schedule-item"><div class="schedule-time">6:30 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">5:00 PM</div><div class="schedule-desc"><strong>ICP On-Call Begins</strong>Limited staffing due to BBQ</div></div>
-    <div class="schedule-item"><div class="schedule-time">Evening</div><div class="schedule-desc"><strong>🔥 Wednesday BBQ</strong>Silent Auction closes at the BBQ · Location TBD</div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="390" data-end="480"><div class="schedule-time">6:30 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="480" data-end="780"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="780" data-end="1020"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="1020" data-end="1200"><div class="schedule-time">5:00 PM</div><div class="schedule-desc"><strong>ICP On-Call Begins</strong>Limited staffing due to BBQ</div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="1080" data-end="1439"><div class="schedule-time">Evening</div><div class="schedule-desc"><strong>🔥 Wednesday BBQ</strong>Silent Auction closes at the BBQ · Location TBD</div></div>
   </div>
 
   <div class="schedule-day">
     <div class="day-header">Thursday, June 12</div>
-    <div class="schedule-item"><div class="schedule-time">7:00 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-12" data-start="420" data-end="480"><div class="schedule-time">7:00 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-12" data-start="480" data-end="780"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-12" data-start="780" data-end="1020"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-12" data-start="1140" data-end="1439"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong></div></div>
   </div>
 
   <div class="schedule-day">
     <div class="day-header">Friday, June 13 — Final Day</div>
-    <div class="schedule-item"><div class="schedule-time">7:00 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
-    <div class="schedule-item"><div class="schedule-time">4:30 PM</div><div class="schedule-desc"><strong>Academy Concludes · ICP Closes</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-13" data-start="420" data-end="480"><div class="schedule-time">7:00 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-13" data-start="480" data-end="780"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-13" data-start="990" data-end="1439"><div class="schedule-time">4:30 PM</div><div class="schedule-desc"><strong>Academy Concludes · ICP Closes</strong></div></div>
   </div>
 
   <div class="placeholder">✏️ Add closing ceremony, graduation, or other special events as details are confirmed.</div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <!-- MAP -->
@@ -452,45 +480,21 @@
   <div class="map-container">
     <img class="map-image" src="https://www.garrettcollege.edu/images/campus-map.jpg" alt="Garrett College Campus Map" onerror="this.style.display='none'; document.getElementById('map-fallback').style.display='block';">
     <div id="map-fallback" style="display:none; padding:20px; text-align:center; color:var(--text-muted); font-size:13px;">📍 <a href="https://www.google.com/maps/place/39%C2%B033'37.6%22N+79%C2%B020'42.1%22W" target="_blank">Open in Google Maps</a></div>
-    <a href="Campus Map.png" download style="display:block; background:var(--forest-green); color:var(--smoke-white); text-align:center; padding:10px; border-radius:6px; font-family:'Barlow Condensed', sans-serif; front-weight:700; letter-spacing:1.5px; text-transform:uppercase; font-size:13px; margin-bottom:8px; ">
-    Download Campus Map </a>
+    <a href="Campus Map.png" download style="display:block; background:var(--forest-green); color:var(--smoke-white); text-align:center; padding:10px; border-radius:6px; font-family:'Barlow Condensed', sans-serif; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; font-size:13px; margin-bottom:8px;">Download Campus Map</a>
   </div>
   <div class="section-title" style="margin-top:4px;">Key Locations</div>
   <div class="building-grid">
-    <div class="building-chip highlight">
-      <div class="building-num">100</div>
-      <div class="building-name">CEWD / GIEC<br><strong style="color:var(--ember-light);">Command · Rm 111</strong></div>
-    </div>
-    <div class="building-chip gold">
-      <div class="building-num">400</div>
-      <div class="building-name">Student Center / Café · Meals</div>
-    </div>
-    <div class="building-chip">
-      <div class="building-num">1200</div>
-      <div class="building-name">Laker Hall · Dorms (Bundled)</div>
-    </div>
-    <div class="building-chip">
-      <div class="building-num">900</div>
-      <div class="building-name">CARC · Aquatics &amp; Fitness</div>
-    </div>
-    <div class="building-chip">
-      <div class="building-num">800</div>
-      <div class="building-name">Special Events Center</div>
-    </div>
-    <div class="building-chip">
-      <div class="building-num">1100</div>
-      <div class="building-name">Garrett Hall</div>
-    </div>
-    <div class="building-chip">
-      <div class="building-num">500</div>
-      <div class="building-name">Learning Commons / Library</div>
-    </div>
-    <div class="building-chip">
-      <div class="building-num">300</div>
-      <div class="building-name">Information Technology</div>
-    </div>
+    <div class="building-chip highlight"><div class="building-num">100</div><div class="building-name">CEWD / GIEC<br><strong style="color:var(--ember-light);">Command · Rm 111</strong></div></div>
+    <div class="building-chip gold"><div class="building-num">400</div><div class="building-name">Student Center / Café · Meals</div></div>
+    <div class="building-chip"><div class="building-num">1200</div><div class="building-name">Laker Hall · Dorms (Bundled)</div></div>
+    <div class="building-chip"><div class="building-num">900</div><div class="building-name">CARC · Aquatics &amp; Fitness</div></div>
+    <div class="building-chip"><div class="building-num">800</div><div class="building-name">Special Events Center</div></div>
+    <div class="building-chip"><div class="building-num">1100</div><div class="building-name">Garrett Hall</div></div>
+    <div class="building-chip"><div class="building-num">500</div><div class="building-name">Learning Commons / Library</div></div>
+    <div class="building-chip"><div class="building-num">300</div><div class="building-name">Information Technology</div></div>
   </div>
   <div class="placeholder" style="margin-top:14px;">✏️ Classroom and field site assignments will be posted here after May 14th.</div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <!-- MEALS -->
@@ -503,9 +507,7 @@
   </div>
   <div class="section-title" style="font-size:17px; color:var(--ember-light);">Meal Plan Comparison</div>
   <div class="meal-plan-header">
-    <div>Meal</div>
-    <div>🏕 Bundled</div>
-    <div>🚗 Commuter</div>
+    <div>Meal</div><div>🏕 Bundled</div><div>🚗 Commuter</div>
   </div>
   <div class="meal-row"><div>Breakfast</div><div class="meal-yes">✓ Included</div><div class="meal-no">✗ Own plan</div></div>
   <div class="meal-row"><div>Lunch</div><div class="meal-yes">✓ Included</div><div class="meal-yes">✓ Full days</div></div>
@@ -527,6 +529,7 @@
     <div><div class="info-label">Dietary Needs / Allergies</div><div class="info-value">Contact the Command Center</div><div class="info-sub"><a href="tel:3013873026">(301) 387-3026</a></div></div>
   </div>
   <div class="placeholder">✏️ Add specific meal times closer to the event.</div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <!-- HOUSING -->
@@ -545,15 +548,15 @@
   </div>
   <div class="info-row">
     <div class="info-icon">🚪</div>
-    <div><div class="info-label">Check-Out</div><div class="info-value">Check Out time varies according to course end</div><div class="info-sub" style="front-weight: bold;">Return keys to any dorm lobby drop-box or the ICP Room 111 registration table</div></div>
+    <div><div class="info-label">Check-Out</div><div class="info-value">Check Out time varies according to course end</div><div class="info-sub">Return keys to any dorm lobby drop-box or the ICP Room 111 registration table</div></div>
   </div>
   <div class="info-row">
     <div class="info-icon">🔑</div>
-    <div><div class="info-label">After-Hours Access</div><div class="info-value"> Contact Campus Security <a href="tel:2403215799">(240) 321-5799</a></div></div>
+    <div><div class="info-label">After-Hours Access</div><div class="info-value">Contact Campus Security <a href="tel:2403215799">(240) 321-5799</a></div></div>
   </div>
   <div class="info-row">
     <div class="info-icon">🧺</div>
-    <div><div class="info-label">Laundry</div><div class="info-value">To ensure your stay is comfortable, please remember to pack your own linens. This is includes sheets, pillow cases, and blankets or sleeping bags, as well as towels and rags. Please note that laundry service will not be available during the event</div></div>
+    <div><div class="info-label">Laundry</div><div class="info-value">To ensure your stay is comfortable, please remember to pack your own linens. This includes sheets, pillow cases, and blankets or sleeping bags, as well as towels and rags. Please note that laundry service will not be available during the event.</div></div>
   </div>
   <div class="info-row">
     <div class="info-icon">🏊</div>
@@ -561,8 +564,9 @@
   </div>
   <div class="info-row">
     <div class="info-icon">📞</div>
-    <div><div class="info-label">Housing Questions</div><div class="info-value">Visit the Command Center, or call </div><div class="info-sub"><a href="tel:3013873026">(301) 387-3026</a></div></div>
+    <div><div class="info-label">Housing Questions</div><div class="info-value">Visit the Command Center, or call</div><div class="info-sub"><a href="tel:3013873026">(301) 387-3026</a></div></div>
   </div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <!-- WIFI -->
@@ -571,11 +575,14 @@
   <div class="wifi-box">
     <div class="wifi-icon">📶</div>
     <div class="wifi-network">Guest Network</div>
-    <div class="wifi-value">TBD</div>
+    <div class="wifi-value" id="wifi-network-name">TBD</div>
+    <button class="copy-btn" id="copy-network-btn" onclick="copyWifi('network')">📋 Copy Network Name</button>
     <div class="wifi-network">Password</div>
-    <div class="wifi-value">TBD</div>
+    <div class="wifi-value" id="wifi-password-value">TBD</div>
+    <button class="copy-btn" id="copy-password-btn" onclick="copyWifi('password')">📋 Copy Password</button>
     <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">WiFi credentials will be released by IT closer to June. Check back here for updates.</div>
   </div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <!-- NEARBY -->
@@ -585,15 +592,16 @@
   <div class="restaurant-item"><div class="restaurant-emoji">🍕</div><div><div class="restaurant-name">Mountain State Brewing Co.</div><div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~5 min drive</div></div></div>
   <div class="restaurant-item"><div class="restaurant-emoji">🍺</div><div><div class="restaurant-name">Brewery and the Beast</div><div class="restaurant-detail">Bar &amp; grill · Accident MD · ~10 min drive</div></div></div>
   <div class="restaurant-item"><div class="restaurant-emoji">🍔</div><div><div class="restaurant-name">McDonald's</div><div class="restaurant-detail">McHenry MD · ~7 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍺</div><div><div class="restaurant-name">The Green Turtle</div><div class="restaurant-detail">Bar &amp; grill· McHenry MD · ~2 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍕</div><div><div class="restaurant-name">MoonShadow</div><div class="restaurant-detail">Vegan, Vegtarian, &amp; Gluten-Free Options· McHenry MD · ~1 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍺</div><div><div class="restaurant-name">Ace's Run Restaurant &amp; Pub</div><div class="restaurant-detail">Bar &amp; grill· McHenry MD · ~2 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🌮</div><div><div class="restaurant-name">Baja Street Tacos &amp; Wings</div><div class="restaurant-detail">Bar &amp; grill· Oakland MD · ~20 min drive</div></div></div>
+  <div class="restaurant-item"><div class="restaurant-emoji">🍺</div><div><div class="restaurant-name">The Green Turtle</div><div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~2 min drive</div></div></div>
+  <div class="restaurant-item"><div class="restaurant-emoji">🍕</div><div><div class="restaurant-name">MoonShadow</div><div class="restaurant-detail">Vegan, Vegetarian, &amp; Gluten-Free Options · McHenry MD · ~1 min drive</div></div></div>
+  <div class="restaurant-item"><div class="restaurant-emoji">🍺</div><div><div class="restaurant-name">Ace's Run Restaurant &amp; Pub</div><div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~2 min drive</div></div></div>
+  <div class="restaurant-item"><div class="restaurant-emoji">🌮</div><div><div class="restaurant-name">Baja Street Tacos &amp; Wings</div><div class="restaurant-detail">Bar &amp; grill · Oakland MD · ~20 min drive</div></div></div>
   <div class="info-box" style="margin-top:4px;">More things to do near Deep Creek Lake: <a href="https://www.visitdeepcreek.com/" target="_blank">visitdeepcreek.com</a></div>
   <div class="section-title" style="font-size:17px; color:var(--ember-light);">🛒 Shopping &amp; Essentials</div>
   <div class="card green"><div class="card-label">Grocery / General</div><div class="card-title">Walmart Supercenter — Oakland MD</div><div class="card-body">~15 min drive · 6 AM - 11 PM</div></div>
   <div class="card sage"><div class="card-label">Pharmacy</div><div class="card-title">CVS Pharmacy</div><div class="card-body">Oakland MD · ~15 min drive · 9 AM - 8 PM</div></div>
   <div class="card"><div class="card-label">Gas Stations</div><div class="card-title">BFS</div><div class="card-body">McHenry MD · ~1 min drive · Open 24/7</div></div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <!-- COMMAND -->
@@ -604,9 +612,7 @@
     <div class="card-title">Room 111 · GIEC (Building 100)</div>
     <div class="card-body">Check-in for all students, instructors, and staff. Coffee available. Home of the silent auction and MAFA/GC staff.<br><br><strong>Phone:</strong> <a href="tel:3013873026">(301) 387-3026</a><br><strong>Email:</strong> fireacademy@garrettcollege.edu</div>
   </div>
-
   <div class="section-title" style="font-size:17px; color:var(--ember-light);">Command Staff</div>
-
   <div class="contact-card"><div class="contact-avatar command">🔥</div><div><div class="contact-name">Mike Boyce</div><div class="contact-role">Incident Commander (IC)</div></div></div>
   <div class="contact-card"><div class="contact-avatar">🛡</div><div><div class="contact-name">Brian Plume</div><div class="contact-role">Safety Officer · PAS</div></div></div>
   <div class="contact-card"><div class="contact-avatar">⚠️</div><div><div class="contact-name">Christopher Franek</div><div class="contact-role">Field Safety Officer</div><div class="contact-info">📞 <a href="tel:6093492490">(609) 349-2490</a></div></div></div>
@@ -616,15 +622,14 @@
   <div class="contact-card"><div class="contact-avatar">📚</div><div><div class="contact-name">Cameron Crisp</div><div class="contact-role">Training Specialist</div></div></div>
   <div class="contact-card"><div class="contact-avatar">🚛</div><div><div class="contact-name">Tim Cole</div><div class="contact-role">Logistics Chief · MDS</div><div class="contact-info">📞 <a href="tel:2403214591">(240) 321-4591</a></div></div></div>
   <div class="contact-card"><div class="contact-avatar">🏥</div><div><div class="contact-name">Gilbert Wagner</div><div class="contact-role">Lead EMT</div><div class="contact-info">📞 <a href="tel:4437906938">(443) 790-6938</a></div></div></div>
-
   <div class="section-title" style="font-size:17px; color:var(--ember-light);">Garrett College Staff</div>
-  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Julie Yoder · Dean of CEWD</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3015012568">(301) 387-3101</a></div></div></div>
-  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Sarah Friend · Coordinator of Operations</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3015012568">(301) 387-3064</a></div></div></div>
-  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Kim Govi · Instructor Liaison / Coordinator of Contract Training </div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873084">(301) 387-3084</a></div></div></div>
-
+  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Julie Yoder · Dean of CEWD</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873101">(301) 387-3101</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Sarah Friend · Coordinator of Operations</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873064">(301) 387-3064</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Kim Govi · Instructor Liaison / Coordinator of Contract Training</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873084">(301) 387-3084</a></div></div></div>
   <div class="section-title" style="font-size:17px; color:var(--ember-light);">Emergency Contacts</div>
   <div class="contact-card"><div class="contact-avatar command">🚑</div><div><div class="contact-name">Garrett Regional Medical Center</div><div class="contact-role">Nearest Hospital · Oakland, MD</div><div class="contact-info">251 North Fourth Street · <a href="tel:3015332121">(301) 533-2121</a></div></div></div>
   <div class="contact-card"><div class="contact-avatar command">🚒</div><div><div class="contact-name">Emergency Services</div><div class="contact-role">Police / Fire / EMS</div><div class="contact-info">📞 <a href="tel:911">911</a> &nbsp;·&nbsp; Campus: <a href="tel:3013873000">(301) 387-3000</a></div></div></div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
 <div class="footer">
@@ -634,6 +639,7 @@
 </div>
 
 <script>
+  // ── TAB NAVIGATION ──────────────────────────────────────────────
   const order = ["home","courses","schedule","map","meals","housing","wifi","nearby","command"];
   function showSection(id) {
     document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
@@ -642,6 +648,115 @@
     document.querySelectorAll(".nav-tab")[order.indexOf(id)].classList.add("active");
     window.scrollTo(0, 0);
   }
+
+  // ── BACK TO TOP ─────────────────────────────────────────────────
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── COUNTDOWN TIMER ─────────────────────────────────────────────
+  // Target: June 8, 2026 at midnight (12:00 AM)
+  const academyStart = new Date('2026-06-08T00:00:00');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = academyStart - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown-display').innerHTML =
+        '<div class="countdown-started">🔥 Academy Is Underway!</div>';
+      return;
+    }
+
+    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── SCHEDULE HIGHLIGHTING ────────────────────────────────────────
+  // Each schedule-item has data-date (YYYY-MM-DD) and data-start / data-end
+  // in minutes since midnight (e.g. 8:00 AM = 480)
+  function highlightSchedule() {
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+    const nowMins = now.getHours() * 60 + now.getMinutes();
+
+    document.querySelectorAll('.schedule-item').forEach(item => {
+      item.classList.remove('current-event');
+      // Remove any existing NOW badge
+      const existing = item.querySelector('.now-badge');
+      if (existing) existing.remove();
+
+      const itemDate  = item.dataset.date;
+      const itemStart = parseInt(item.dataset.start, 10);
+      const itemEnd   = parseInt(item.dataset.end, 10);
+
+      if (itemDate === todayStr && nowMins >= itemStart && nowMins < itemEnd) {
+        item.classList.add('current-event');
+        const badge = document.createElement('span');
+        badge.className = 'now-badge';
+        badge.textContent = 'NOW';
+        const strong = item.querySelector('.schedule-desc strong');
+        if (strong) strong.appendChild(badge);
+      }
+    });
+  }
+  highlightSchedule();
+  setInterval(highlightSchedule, 60000); // refresh every minute
+
+  // ── WIFI COPY BUTTONS ───────────────────────────────────────────
+  // UPDATE these two values when IT provides credentials in late May
+  const WIFI_NETWORK  = 'TBD';   // <-- replace with actual network name
+  const WIFI_PASSWORD = 'TBD';   // <-- replace with actual password
+
+  function copyWifi(type) {
+    const value  = type === 'network' ? WIFI_NETWORK : WIFI_PASSWORD;
+    const btnId  = type === 'network' ? 'copy-network-btn' : 'copy-password-btn';
+    const btn    = document.getElementById(btnId);
+
+    if (value === 'TBD') {
+      btn.textContent = '⏳ Not Available Yet';
+      setTimeout(() => {
+        btn.textContent = type === 'network' ? '📋 Copy Network Name' : '📋 Copy Password';
+      }, 2000);
+      return;
+    }
+
+    navigator.clipboard.writeText(value).then(() => {
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = type === 'network' ? '📋 Copy Network Name' : '📋 Copy Password';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      // Fallback for browsers that block clipboard without HTTPS
+      btn.textContent = '⚠️ Copy manually above';
+      setTimeout(() => {
+        btn.textContent = type === 'network' ? '📋 Copy Network Name' : '📋 Copy Password';
+      }, 2500);
+    });
+  }
 </script>
+
+<!-- SERVICE WORKER REGISTRATION (offline capability) -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('MAWTA: offline mode ready'))
+        .catch(err => console.log('SW registration failed:', err));
+    });
+  }
+</script>
+
 </body>
 </html>
