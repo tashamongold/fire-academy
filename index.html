@@ -175,6 +175,35 @@
   /* BACK TO TOP BUTTON */
   .back-to-top { display: block; width: 100%; margin: 18px 0 4px; padding: 11px; background: var(--forest-deep); border: 1px solid var(--forest-mid); border-radius: 8px; color: var(--text-muted); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
   .back-to-top:hover { color: var(--smoke-white); border-color: var(--forest-green); }
+
+  /* ACCORDION */
+.accordion-item { margin-bottom: 6px; border-radius: 8px; overflow: hidden; }
+.accordion-btn { width: 100%; background: var(--forest-deep); border: none; border-left: 4px solid var(--forest-green); color: var(--smoke-white); padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; text-align: left; transition: background 0.2s; }
+.accordion-btn:hover { background: var(--forest-mid); }
+.accordion-btn.open { background: var(--forest-mid); border-left-color: var(--ember); color: var(--ash-gold); }
+.accordion-arrow { font-size: 11px; transition: transform 0.2s; flex-shrink: 0; margin-left: 8px; }
+.accordion-btn.open .accordion-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; background: var(--forest-dark); border-left: 4px solid var(--ember); padding: 10px 14px; font-size: 13px; color: #B8C8B8; line-height: 1.5; }
+.accordion-body.open { display: block; }
+
+Then add this JavaScript anywhere inside your existing <script> block:
+javascriptfunction toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+
+  // Close all open accordions first
+  document.querySelectorAll('.accordion-btn.open').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+
+  // If it was closed, open it
+  if (!isOpen) {
+    btn.classList.add('open');
+    body.classList.add('open');
+  }
+}
+That is all three pieces. The HTML replaces the whole Nearby section, the CSS goes in your style block, and the JavaScript goes inside your existing script tag.Sonnet 4.6
 </style>
 </head>
 <body>
@@ -470,7 +499,6 @@
     <div class="schedule-item" data-date="2026-06-13" data-start="990" data-end="1439"><div class="schedule-time">4:30 PM</div><div class="schedule-desc"><strong>Academy Concludes · ICP Closes</strong></div></div>
   </div>
 
-  <div class="placeholder">✏️ Add closing ceremony, graduation, or other special events as details are confirmed.</div>
   <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
@@ -548,7 +576,7 @@
   </div>
   <div class="info-row">
     <div class="info-icon">🚪</div>
-    <div><div class="info-label">Check-Out</div><div class="info-value">Check Out time varies according to course end</div><div class="info-sub">Return keys to any dorm lobby drop-box or the ICP Room 111 registration table</div></div>
+    <div><div class="info-label">Check-Out</div><div class="info-value">Check out time varies according to course end</div><div class="info-sub">Return keys to any dorm lobby drop-box or the ICP Room 111 registration table</div></div>
   </div>
   <div class="info-row">
     <div class="info-icon">🔑</div>
@@ -588,19 +616,142 @@
 <!-- NEARBY -->
 <div class="section" id="nearby">
   <div class="section-title">Nearby</div>
+
   <div class="section-title" style="font-size:17px; color:var(--ember-light); margin-top:0;">🍔 Restaurants</div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍕</div><div><div class="restaurant-name">Mountain State Brewing Co.</div><div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~5 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍺</div><div><div class="restaurant-name">Brewery and the Beast</div><div class="restaurant-detail">Bar &amp; grill · Accident MD · ~10 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍔</div><div><div class="restaurant-name">McDonald's</div><div class="restaurant-detail">McHenry MD · ~7 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍺</div><div><div class="restaurant-name">The Green Turtle</div><div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~2 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍕</div><div><div class="restaurant-name">MoonShadow</div><div class="restaurant-detail">Vegan, Vegetarian, &amp; Gluten-Free Options · McHenry MD · ~1 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🍺</div><div><div class="restaurant-name">Ace's Run Restaurant &amp; Pub</div><div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~2 min drive</div></div></div>
-  <div class="restaurant-item"><div class="restaurant-emoji">🌮</div><div><div class="restaurant-name">Baja Street Tacos &amp; Wings</div><div class="restaurant-detail">Bar &amp; grill · Oakland MD · ~20 min drive</div></div></div>
-  <div class="info-box" style="margin-top:4px;">More things to do near Deep Creek Lake: <a href="https://www.visitdeepcreek.com/" target="_blank">visitdeepcreek.com</a></div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍕 Mountain State Brewing Co.</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~5 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍺 Brewery and the Beast</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · Accident MD · ~10 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍔 McDonald's</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">McHenry MD · ~7 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍺 The Green Turtle</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~2 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍕 MoonShadow</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Vegan, Vegetarian, &amp; Gluten-Free Options · McHenry MD · ~1 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍺 Ace's Run Restaurant &amp; Pub</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~2 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🌮 Baja Street Tacos &amp; Wings</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · Oakland MD · ~20 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>✏️ Restaurant Placeholder</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail" style="color:var(--ash-gold); font-style:italic;">Add name, type, location, and drive time here.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
   <div class="section-title" style="font-size:17px; color:var(--ember-light);">🛒 Shopping &amp; Essentials</div>
-  <div class="card green"><div class="card-label">Grocery / General</div><div class="card-title">Walmart Supercenter — Oakland MD</div><div class="card-body">~15 min drive · 6 AM - 11 PM</div></div>
-  <div class="card sage"><div class="card-label">Pharmacy</div><div class="card-title">CVS Pharmacy</div><div class="card-body">Oakland MD · ~15 min drive · 9 AM - 8 PM</div></div>
-  <div class="card"><div class="card-label">Gas Stations</div><div class="card-title">BFS</div><div class="card-body">McHenry MD · ~1 min drive · Open 24/7</div></div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🛒 Walmart Supercenter</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Grocery / General · Oakland MD · ~15 min drive · 6 AM – 11 PM</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>💊 CVS Pharmacy</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Oakland MD · ~15 min drive · 9 AM – 8 PM</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>⛽ BFS Gas Station</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">McHenry MD · ~1 min drive · Open 24/7</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title" style="font-size:17px; color:var(--ember-light);">🌲 Garrett County Attractions</div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🏕 Deep Creek State Park</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Swimming, hiking, and fishing on Deep Creek Lake · McHenry MD · ~10 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>💧 Swallow Falls State Park</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Home to Maryland's tallest free-falling waterfall! Don't forget to visit Muddy Creek Falls while you're there. · Oakland MD · ~20 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🎨 Spruce Forest Artisan Village</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Working artisan shops in a historic village setting · Grantsville MD · ~30 min drive</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:14px;">More things to do near Deep Creek Lake: <a href="https://www.visitdeepcreek.com/" target="_blank">visitdeepcreek.com</a></div>
   <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
@@ -628,7 +779,7 @@
   <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Kim Govi · Instructor Liaison / Coordinator of Contract Training</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873084">(301) 387-3084</a></div></div></div>
   <div class="section-title" style="font-size:17px; color:var(--ember-light);">Emergency Contacts</div>
   <div class="contact-card"><div class="contact-avatar command">🚑</div><div><div class="contact-name">Garrett Regional Medical Center</div><div class="contact-role">Nearest Hospital · Oakland, MD</div><div class="contact-info">251 North Fourth Street · <a href="tel:3015332121">(301) 533-2121</a></div></div></div>
-  <div class="contact-card"><div class="contact-avatar command">🚒</div><div><div class="contact-name">Emergency Services</div><div class="contact-role">Police / Fire / EMS</div><div class="contact-info">📞 <a href="tel:911">911</a> &nbsp;·&nbsp; Campus: <a href="tel:3013873000">(301) 387-3000</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar command">🚒</div><div><div class="contact-name">Emergency Services</div><div class="contact-role">Police / Fire / EMS</div><div class="contact-info">📞 <a href="tel:911">911</a> &nbsp;·&nbsp; Campus Security: <a href="tel:2403215799">(240) 321-5799</a></div></div></div>
   <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
 </div>
 
