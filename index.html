@@ -234,12 +234,12 @@
 </div>
 
 <div class="nav-tabs" id="nav">
-  <button class="nav-tab active" onclick="showSection('home')">Home</button>
+  <button class="nav-tab active" onclick="showHome()">Home</button>
   <button class="nav-tab" onclick="showSection('courses')">Courses</button>
   <button class="nav-tab" onclick="showSection('schedule')">Schedule</button>
   <button class="nav-tab" onclick="showSection('map')">Map</button>
   <button class="nav-tab" onclick="showSection('meals')">Meals</button>
-  <button class="nav-tab" onclick="showHousing()">Housing</button>
+  <button class="nav-tab" onclick="showSection('housing')">Housing</button>
   <button class="nav-tab" onclick="showSection('wifi')">WiFi</button>
   <button class="nav-tab" onclick="showSection('nearby')">Nearby</button>
   <button class="nav-tab" onclick="showSection('command')">Command</button>
@@ -1234,17 +1234,16 @@
       }, 2500);
     });
   }
-  // ── HOUSING POPUP ─────────────────────────────────────────────
+ // ── HOUSING POPUP ─────────────────────────────────────────────
 let housingPopupShown = false;
 
-function showHousing() {
-  showSection('housing');
+function showHome() {
+  showSection('home');
   if (!housingPopupShown) {
     document.getElementById('housing-popup').style.display = 'flex';
     housingPopupShown = true;
   }
 }
-
 function closeHousingPopup() {
   document.getElementById('housing-popup').style.display = 'none';
 }
@@ -1266,6 +1265,9 @@ document.getElementById('housing-popup').addEventListener('click', function(e) {
         .catch(err => console.log('SW registration failed:', err));
     });
   }
+  // Show popup on first load
+document.getElementById('housing-popup').style.display = 'flex';
+housingPopupShown = true;
 </script>
 <div id="housing-popup" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:999; display:none; align-items:center; justify-content:center; padding:20px;">
   <div style="background:var(--forest-deep); border-radius:12px; padding:20px; max-width:340px; border-top:4px solid var(--ember); position:relative;">
