@@ -1,7 +1,7 @@
 // MAWTA 2026 Service Worker
 // Caches the app so it loads even without cell signal
 
-const CACHE_NAME = 'mawta-2026-v1';
+const CACHE_NAME = 'mawta-2026-v2';
 
 // Files to cache for offline use
 const CACHE_FILES = [
