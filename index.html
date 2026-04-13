@@ -1248,6 +1248,10 @@ function closeHousingPopup() {
   document.getElementById('housing-popup').style.display = 'none';
 }
 
+  // Show popup on first load
+document.getElementById('housing-popup').style.display = 'flex';
+housingPopupShown = true;
+  
 // Close popup when clicking outside the box
 document.getElementById('housing-popup').addEventListener('click', function(e) {
   if (e.target === this) {
