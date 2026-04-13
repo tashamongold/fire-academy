@@ -1,7 +1,7 @@
 // MAWTA 2026 Service Worker
 // Caches the app for offline use with automatic updates
 
-const CACHE_NAME = 'mawta-2026-v5';
+const CACHE_NAME = 'mawta-2026-v6';
 
 const CACHE_FILES = [
   './',
