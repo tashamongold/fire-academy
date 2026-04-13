@@ -1,8 +1,1243 @@
-<div class="command-section">
-    <h2>Command Section</h2>
-    <div class="iap-placeholder">
-        <h3>Incident Action Plan</h3>
-        <a href="IAP.pdf" download>Download IAP.pdf</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mid-Atlantic Wildfire Training Academy 2026</title>
+<link rel="apple-touch-icon" href="compact%20logo.jpg">
+<link rel="icon" type="image/png" href="compact%20logo.jpg">
+<meta name="apple-mobile-web-app-title" content="MAFA 2026">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest-dark: #1A2E1A;
+    --forest-deep: #243524;
+    --forest-mid: #2F4A2F;
+    --forest-green: #3A5C3A;
+    --forest-light: #4A7A4A;
+    --sage: #6B9E6B;
+    --moss: #8AB88A;
+    --ember: #D4580A;
+    --ember-light: #E8762A;
+    --ash-gold: #C8A84B;
+    --smoke-white: #F0EDE8;
+    --white: #FFFFFF;
+    --text-muted: #8AAB8A;
+    --border: #3A5C3A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; background: var(--forest-dark); color: var(--smoke-white); min-height: 100vh; max-width: 480px; margin: 0 auto; }
+
+  .header { position: relative; overflow: hidden; background: var(--forest-deep); }
+  .header-photo { width: 100%; height: 180px; object-fit: cover; display: block; opacity: 0.7; }
+  .header-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(26,46,26,1) 0%, rgba(26,46,26,0.6) 60%, transparent 100%); padding: 20px 16px 0; }
+  .header-top { display: flex; align-items: flex-end; gap: 10px; }
+  .flame-icon { font-size: 36px; line-height: 1; filter: drop-shadow(0 0 8px rgba(212,88,10,0.8)); }
+  .header-text h1 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; line-height: 1.1; color: var(--white); }
+  .header-text .subtitle { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2.5px; color: var(--ash-gold); text-transform: uppercase; }
+  .date-bar { background: var(--ember); padding: 7px 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; color: var(--white); }
+
+  .nav-tabs { display: flex; background: var(--forest-deep); overflow-x: auto; scrollbar-width: none; border-bottom: 2px solid var(--forest-mid); position: sticky; top: 0; z-index: 100; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab { flex: 0 0 auto; padding: 11px 14px; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; }
+  .nav-tab.active { color: var(--ash-gold); border-bottom-color: var(--ember); }
+  .nav-tab:hover { color: var(--smoke-white); }
+
+  .section { display: none; padding: 16px; animation: fadeIn 0.2s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--ash-gold); margin-bottom: 14px; padding-bottom: 7px; border-bottom: 1px solid var(--forest-mid); }
+
+  .card { background: var(--forest-deep); border-radius: 8px; padding: 14px; margin-bottom: 10px; border-left: 4px solid var(--ember); }
+  .card.green { border-left-color: var(--sage); }
+  .card.gold { border-left-color: var(--ash-gold); }
+  .card.blue { border-left-color: #5B9BD5; }
+  .card.sage { border-left-color: var(--moss); }
+  .card-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .card-body { font-size: 13px; color: #B8C8B8; line-height: 1.5; }
+  .card-body strong { color: var(--smoke-white); }
+
+  .info-row { display: flex; align-items: flex-start; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--forest-mid); }
+  .info-row:last-child { border-bottom: none; }
+  .info-icon { font-size: 18px; width: 28px; text-align: center; flex-shrink: 0; margin-top: 1px; }
+  .info-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ember-light); margin-bottom: 2px; }
+  .info-value { font-size: 14px; color: var(--smoke-white); line-height: 1.4; }
+  .info-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  .badge { display: inline-block; background: var(--ember); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; margin: 3px 3px 3px 0; cursor: pointer; }
+  .badge.green { background: var(--forest-green); color: var(--moss); }
+  .badge.gold { background: #3A3010; color: var(--ash-gold); }
+  .badge.blue { background: #1A2A40; color: #7BBAE8; }
+  .badge.sage { background: var(--forest-mid); color: var(--moss); }
+
+  .schedule-day { margin-bottom: 18px; }
+  .day-header { background: linear-gradient(90deg, var(--ember), var(--ember-light)); padding: 8px 14px; border-radius: 6px 6px 0 0; font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px; color: var(--white); }
+  .schedule-item { background: var(--forest-deep); border-bottom: 1px solid var(--forest-mid); padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start; transition: background 0.3s; }
+  .schedule-item:last-child { border-radius: 0 0 6px 6px; border-bottom: none; }
+  .schedule-item.current-event { background: rgba(212,88,10,0.18); border-left: 3px solid var(--ember); }
+  .schedule-item.current-event .schedule-time { color: var(--ember-light); }
+  .schedule-time { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; color: var(--ash-gold); min-width: 65px; flex-shrink: 0; padding-top: 1px; }
+  .schedule-desc { font-size: 13px; color: #B8C8B8; line-height: 1.4; }
+  .schedule-desc strong { color: var(--smoke-white); font-size: 14px; display: block; margin-bottom: 1px; }
+  .now-badge { display: inline-block; background: var(--ember); color: white; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+  /* ── FLIP CARD STYLES ───────────────────────────────────────────── */
+  .flip-card-container { perspective: 1000px; margin-bottom: 10px; }
+  .flip-card { position: relative; width: 100%; min-height: 120px; transition: transform 0.5s; transform-style: preserve-3d; cursor: pointer; }
+  .flip-card.flipped { transform: rotateY(180deg); }
+  .flip-card-front, .flip-card-back { position: absolute; width: 100%; min-height: 120px; backface-visibility: hidden; border-radius: 8px; padding: 13px; background: var(--forest-deep); }
+  .flip-card-front { border-top: 3px solid var(--forest-green); z-index: 2; }
+  .flip-card-front.has-field { border-top-color: var(--ember); }
+  .flip-card-back { transform: rotateY(180deg); border-top: 3px solid var(--sage); }
+  .flip-card-back.has-field { border-top-color: var(--ember); }
+  
+  /* Make flip card height dynamic */
+  .flip-card-container { height: auto; }
+  .flip-card { height: auto; min-height: 0; }
+  .flip-card:not(.flipped) .flip-card-back { position: relative; visibility: hidden; height: 0; min-height: 0; padding: 0; overflow: hidden; }
+  .flip-card:not(.flipped) .flip-card-front { position: relative; }
+  .flip-card.flipped .flip-card-front { position: absolute; visibility: hidden; }
+  .flip-card.flipped .flip-card-back { position: relative; visibility: visible; height: auto; padding: 13px; }
+
+  .course-num { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px; }
+  .course-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--smoke-white); margin-bottom: 6px; line-height: 1.2; }
+  .course-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+  .course-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 3px; text-transform: uppercase; }
+  .tag-days { background: var(--forest-mid); color: var(--moss); }
+  .tag-instructor { background: #2A3A2A; color: var(--sage); }
+  .tag-location { background: #2A2A1A; color: var(--ash-gold); }
+  .tag-field { background: #3A2010; color: var(--ember-light); }
+  .tag-virtual { background: #101A2A; color: #7BBAE8; }
+  .flip-hint { font-size: 10px; color: var(--text-muted); margin-top: 8px; text-align: right; }
+
+  /* Back of card styles */
+  .back-section { margin-bottom: 10px; }
+  .back-section:last-child { margin-bottom: 0; }
+  .back-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ember-light); margin-bottom: 3px; }
+  .back-value { font-size: 13px; color: #B8C8B8; line-height: 1.5; }
+  .back-value.room { color: var(--ash-gold); font-weight: 600; }
+  .back-field-day { background: rgba(212,88,10,0.15); border-radius: 4px; padding: 6px 8px; margin-top: 4px; }
+  .back-field-day .back-label { color: var(--ember-light); }
+  .prework-yes { color: var(--ember-light); }
+  .prework-no { color: var(--moss); }
+
+  .map-container { background: var(--forest-deep); border-radius: 8px; overflow: hidden; margin-bottom: 14px; }
+  .map-image { width: 100%; display: block; }
+  .map-note { padding: 10px 14px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--forest-mid); }
+  .building-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .building-chip { background: var(--forest-deep); border-radius: 7px; padding: 10px 12px; border-top: 3px solid var(--forest-green); }
+  .building-chip.highlight { border-top-color: var(--ember); }
+  .building-chip.gold { border-top-color: var(--ash-gold); }
+  .building-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; line-height: 1; color: var(--ash-gold); }
+  .building-name { font-size: 11px; color: #B8C8B8; margin-top: 2px; line-height: 1.3; }
+
+  .contact-card { background: var(--forest-deep); border-radius: 8px; padding: 13px; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 12px; }
+  .contact-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--forest-mid); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; border: 2px solid var(--forest-green); }
+  .contact-avatar.command { background: var(--ember); border-color: var(--ember-light); }
+  .contact-avatar.gc { background: var(--forest-green); border-color: var(--sage); }
+  .contact-name { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--smoke-white); line-height: 1.2; }
+  .contact-role { font-size: 12px; color: var(--ember-light); margin-top: 1px; font-weight: 600; }
+  .contact-info { font-size: 12px; color: #B8C8B8; margin-top: 4px; line-height: 1.5; }
+
+  /* WIFI BOX */
+  .wifi-box { background: var(--forest-deep); border: 2px solid var(--forest-green); border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 14px; }
+  .wifi-icon { font-size: 32px; margin-bottom: 8px; }
+  .wifi-network { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+  .wifi-value { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ash-gold); background: var(--forest-dark); border-radius: 6px; padding: 6px 14px; display: inline-block; margin: 4px 0 8px; min-width: 160px; }
+
+  /* COPY BUTTON */
+  .copy-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--forest-green); color: var(--smoke-white); border: none; border-radius: 6px; padding: 8px 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; margin: 4px 0 12px; transition: background 0.2s, transform 0.1s; }
+  .copy-btn:hover { background: var(--forest-light); }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.copied { background: var(--sage); color: var(--forest-dark); }
+
+  .meal-plan-header { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--forest-mid); border-radius: 8px 8px 0 0; overflow: hidden; margin-top: 10px; }
+  .meal-plan-header div { background: var(--forest-green); padding: 8px 6px; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--smoke-white); }
+  .meal-plan-header div:first-child { color: var(--ash-gold); background: var(--forest-mid); }
+  .meal-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--forest-mid); }
+  .meal-row:last-child { border-radius: 0 0 8px 8px; overflow: hidden; }
+  .meal-row div { background: var(--forest-deep); padding: 8px 6px; text-align: center; font-size: 12px; color: #B8C8B8; line-height: 1.3; }
+  .meal-row div:first-child { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; color: var(--smoke-white); text-align: left; padding-left: 10px; }
+  .meal-yes { color: var(--moss) !important; font-weight: 600 !important; }
+  .meal-no { color: #556655 !important; }
+  .meal-special { color: var(--ash-gold) !important; font-weight: 600 !important; }
+
+  .alert-box { background: rgba(212,88,10,0.12); border: 1px solid var(--ember); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; display: flex; gap: 10px; align-items: flex-start; }
+  .alert-icon { font-size: 20px; flex-shrink: 0; padding-top: 1px; }
+  .alert-text { font-size: 13px; color: #D8E8D8; line-height: 1.5; }
+  .alert-text strong { color: var(--ember-light); }
+
+  .info-box { background: rgba(106,158,107,0.1); border: 1px solid var(--forest-green); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; font-size: 13px; color: #B8C8B8; line-height: 1.5; }
+  .info-box strong { color: var(--moss); }
+
+  .icp-table { width: 100%; border-collapse: collapse; margin-top: 4px; border-radius: 6px; overflow: hidden; }
+  .icp-table th { background: var(--forest-green); padding: 7px 10px; text-align: left; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--smoke-white); }
+  .icp-table td { background: var(--forest-deep); padding: 8px 10px; font-size: 13px; color: #B8C8B8; border-bottom: 1px solid var(--forest-mid); }
+  .icp-table tr:last-child td { border-bottom: none; }
+  .icp-table td:first-child { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--smoke-white); font-size: 14px; width: 120px; }
+
+  .restaurant-item { background: var(--forest-deep); border-radius: 8px; padding: 12px; margin-bottom: 8px; display: flex; gap: 10px; }
+  .restaurant-emoji { font-size: 24px; flex-shrink: 0; line-height: 1; padding-top: 2px; }
+  .restaurant-name { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--smoke-white); }
+  .restaurant-detail { font-size: 12px; color: #B8C8B8; margin-top: 2px; line-height: 1.4; }
+
+  .placeholder { background: rgba(200,168,75,0.08); border: 1px dashed var(--ash-gold); border-radius: 6px; padding: 9px 12px; font-size: 12px; color: var(--ash-gold); margin-bottom: 12px; font-style: italic; }
+  .divider { border: none; border-top: 1px solid var(--forest-mid); margin: 14px 0; }
+  .footer { text-align: center; padding: 18px; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--forest-mid); margin-top: 8px; }
+  a { color: var(--ember-light); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* COUNTDOWN */
+  .countdown-box { background: var(--forest-deep); border: 2px solid var(--forest-green); border-radius: 10px; padding: 16px; margin-bottom: 14px; text-align: center; }
+  .countdown-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .countdown-units { display: flex; justify-content: center; gap: 8px; }
+  .countdown-unit { background: var(--forest-dark); border-radius: 8px; padding: 10px 8px 8px; min-width: 58px; }
+  .countdown-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: var(--ash-gold); letter-spacing: 2px; }
+  .countdown-unit-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+  .countdown-started { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--ember-light); letter-spacing: 2px; padding: 8px 0; }
+
+  /* BACK TO TOP BUTTON */
+  .back-to-top { display: block; width: 100%; margin: 18px 0 4px; padding: 11px; background: var(--forest-deep); border: 1px solid var(--forest-mid); border-radius: 8px; color: var(--text-muted); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+  .back-to-top:hover { color: var(--smoke-white); border-color: var(--forest-green); }
+
+  /* ACCORDION */
+.accordion-item { margin-bottom: 6px; border-radius: 8px; overflow: hidden; }
+.accordion-btn { width: 100%; background: var(--forest-deep); border: none; border-left: 4px solid var(--forest-green); color: var(--smoke-white); padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; text-align: left; transition: background 0.2s; }
+.accordion-btn:hover { background: var(--forest-mid); }
+.accordion-btn.open { background: var(--forest-mid); border-left-color: var(--ember); color: var(--ash-gold); }
+.accordion-arrow { font-size: 11px; transition: transform 0.2s; flex-shrink: 0; margin-left: 8px; }
+.accordion-btn.open .accordion-arrow { transform: rotate(180deg); }
+.accordion-body { display: none; background: var(--forest-dark); border-left: 4px solid var(--ember); padding: 10px 14px; font-size: 13px; color: #B8C8B8; line-height: 1.5; }
+.accordion-body.open { display: block; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img class="header-photo" src="https://www.garrettcollege.edu/images/fire-academy/fireacademy-2024.jpg" alt="Mid-Atlantic Wildfire Training Academy" onerror="this.style.display='none'">
+  <div class="header-overlay">
+    <div class="header-top">
+      <div class="flame-icon">🔥</div>
+      <div class="header-text">
+        <div class="subtitle">Mid-Atlantic Wildfire Training Academy</div>
+        <h1>MAFA 2026</h1>
+      </div>
     </div>
+  </div>
+  <div class="date-bar">
+    <span>📅 June 8–12, 2026</span>
+    <span>Garrett College · McHenry, MD</span>
+  </div>
 </div>
-<!-- Additional content from original file goes here -->
+
+<div class="nav-tabs" id="nav">
+  <button class="nav-tab active" onclick="showSection('home')">Home</button>
+  <button class="nav-tab" onclick="showSection('courses')">Courses</button>
+  <button class="nav-tab" onclick="showSection('schedule')">Schedule</button>
+  <button class="nav-tab" onclick="showSection('map')">Map</button>
+  <button class="nav-tab" onclick="showSection('meals')">Meals</button>
+  <button class="nav-tab" onclick="showSection('housing')">Housing</button>
+  <button class="nav-tab" onclick="showSection('wifi')">WiFi</button>
+  <button class="nav-tab" onclick="showSection('nearby')">Nearby</button>
+  <button class="nav-tab" onclick="showSection('command')">Command</button>
+</div>
+
+<!-- HOME -->
+<div class="section active" id="home">
+  <div class="section-title">Welcome</div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-box">
+    <div class="countdown-label">🔥 Fire Academy Begins In</div>
+    <div id="countdown-display">
+      <div class="countdown-units">
+        <div class="countdown-unit"><div class="countdown-num" id="cd-days">--</div><div class="countdown-unit-label">Days</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-hours">--</div><div class="countdown-unit-label">Hours</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-mins">--</div><div class="countdown-unit-label">Mins</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-secs">--</div><div class="countdown-unit-label">Secs</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box">
+    <div class="alert-icon">🚨</div>
+    <div class="alert-text"><strong>Emergency:</strong> Call 911 &nbsp;·&nbsp; Campus Security: <a href="tel:2403215799">(240) 321-5799</a></div>
+  </div>
+  <div class="card gold">
+    <div class="card-label">Hosted by Garrett College</div>
+    <div class="card-title">McHenry, MD · June 8–12, 2026</div>
+    <div class="card-body">687 Mosser Road, McHenry, MD 21541<br><a href="tel:3013873026">(301) 387-3026</a></div>
+  </div>
+  <div class="card green">
+    <div class="card-label">Quick Links</div>
+    <div class="card-title">Jump To</div>
+    <div style="margin-top:8px;">
+      <span class="badge" onclick="showSection('courses')">📚 Courses</span>
+      <span class="badge gold" onclick="showSection('schedule')">📅 Schedule</span>
+      <span class="badge green" onclick="showSection('map')">🗺 Map</span>
+      <span class="badge sage" onclick="showSection('meals')">🍽 Meals</span>
+      <span class="badge blue" onclick="showSection('wifi')">📶 WiFi</span>
+      <span class="badge" onclick="showSection('command')">📋 Command</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-label">Silent Auction</div>
+    <div class="card-title">🏷 Room 111 · GIEC (Building 100)</div>
+    <div class="card-body">Set up <strong>Sunday evening</strong>. Open through the <strong>Wednesday BBQ</strong>. Stop by to browse and bid!</div>
+  </div>
+  <div class="card sage">
+    <div class="card-label">ICP Check-In Location</div>
+    <div class="card-title">Room 111 · GIEC (Building 100)</div>
+    <div class="card-body">All students, instructors, and staff check in here. Coffee available. MAFA and GC staff on hand for questions.</div>
+  </div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<!-- COURSES -->
+<div class="section" id="courses">
+  <div class="section-title">2026 Courses</div>
+  <div class="info-box"><strong>AM Sessions:</strong> 8:00 AM – 12:00 PM &nbsp;|&nbsp; <strong>PM Sessions:</strong> 1:00 PM – 5:00 PM<br>Tap any course card to see description and details.</div>
+
+  <!-- MT-206: FI-210 Wildfire Origin & Cause -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-206</div>
+        <div class="course-title">FI-210 · Wildfire Origin and Cause Determination</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">5 Days · Mon–Fri</span>
+          <span class="course-tag tag-instructor">Jake Novitsky (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Learn wildland fire investigation methods, evidence collection, documentation, and related legal procedures through lectures, presentations, and field exercises.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wednesday</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-260: S-131 Firefighter Type 1 -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front">
+        <div class="course-num">MT-260</div>
+        <div class="course-title">S-131 · Firefighter Type 1</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">2 Days · Tue–Wed</span>
+          <span class="course-tag tag-instructor">Kelly Broadbear (Lead)</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Covers operational leadership, communications, LCES, and tactical decision-making for FFT1 and ICT5 positions.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-292: RX-300 Prescribed Fire Burn Boss -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front">
+        <div class="course-num">MT-292</div>
+        <div class="course-title">Rx-300 · Prescribed Fire Burn Boss</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">5 Days · Mon–Fri</span>
+          <span class="course-tag tag-instructor">Tom Liogys (Lead)</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Prepare, critically evaluate, and implement prescribed fire plans. Must pass implementation assessment and final presentation.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-254: S-130 Full Class -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-254</div>
+        <div class="course-title">S-130 · Basic Wildland Firefighter (Full Class)</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">4 Days · Mon–Thu</span>
+          <span class="course-tag tag-instructor">Shannon Wolfe (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Basic firefighting skills including fireline construction, tool use, and safety protocols.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed PM, Thu</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes (complete L-180 and S-190 online)</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-288: S-130 Field Day Only -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-288</div>
+        <div class="course-title">S-130 · Basic Wildland Firefighter Field Day</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">1 Day · Friday</span>
+          <span class="course-tag tag-instructor">Shannon Wolfe (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">All-day field exercise for students who completed the online classroom portion. Bring rain gear, leather gloves, and lace-up boots.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD (Field Site)</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Friday (all day)</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes (complete L-180, S-190, and S-130 online)</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-223: S-200 Initial Attack IC -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front">
+        <div class="course-num">MT-223</div>
+        <div class="course-title">S-200 · Initial Attack Incident Commander</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">2 Days · Wed–Thu</span>
+          <span class="course-tag tag-instructor">Jeremy Waite (Lead)</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Training for ICT4 position covering foundation skills, intelligence gathering, size-up, plan development, and incident management.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-261: S-211 Portable Pumps -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-261</div>
+        <div class="course-title">S-211 · Portable Pumps and Water Use</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">3 Days · Mon–Wed</span>
+          <span class="course-tag tag-instructor">Chad Northcraft (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Design, set up, operate, troubleshoot, and shut down portable water delivery systems.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Tuesday</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-293: S-230 Crew Boss -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front">
+        <div class="course-num">MT-293</div>
+        <div class="course-title">S-230 · Crew Boss Single Resource</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">2 Days · Wed–Thu</span>
+          <span class="course-tag tag-instructor">Chris Franeck (Lead)</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Blended course covering crew boss duties including briefings, task assignment, fireline duties, mop-up, and firing operations.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-294: S-112 Chainsaw Operations -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-294</div>
+        <div class="course-title">S-112 · Introduction to Chainsaw Operations</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">3 Days · Tue–Thu</span>
+          <span class="course-tag tag-instructor">Aaron Cook (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Blended course providing knowledge and skills for the Basic Faller (FAL3) position.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed, Thu</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-295: ENOP Engine Operations -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-295</div>
+        <div class="course-title">ENOPS · Engine Operations</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">5 Days · Mon–Fri</span>
+          <span class="course-tag tag-instructor">Todd Breininger (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Learn to drive engines to fire locations, operate pumps and hose lays, inspect and service equipment, and coordinate with adjacent forces.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed, Thu, Fri</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-296: Wilderness First Aid -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-296</div>
+        <div class="course-title">Wilderness First Aid</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">3 Days · Mon–Wed</span>
+          <span class="course-tag tag-instructor">Jim Boling (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Emergency first aid principles for wilderness and remote environments. Mix of classroom instruction and realistic outdoor scenarios.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Tue PM, Wed AM</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-no">None</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-282: ROHVA A -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-282</div>
+        <div class="course-title">UTV ROHVA A</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">1 Day · Wednesday AM</span>
+          <span class="course-tag tag-instructor">Tom Shuman (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Hands-on ROV driver training on a closed range. Approximately 3 hours of driving time.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD (Field Site)</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed AM</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT-282-02: ROHVA B -->
+  <div class="flip-card-container">
+    <div class="flip-card" onclick="flipCard(this)">
+      <div class="flip-card-front has-field">
+        <div class="course-num">MT-282-02</div>
+        <div class="course-title">UTV ROHVA B</div>
+        <div class="course-meta">
+          <span class="course-tag tag-days">1 Day · Wednesday PM</span>
+          <span class="course-tag tag-instructor">Tom Shuman (Lead)</span>
+          <span class="course-tag tag-field">🔥 Field Day</span>
+        </div>
+        <div class="flip-hint">Tap for details →</div>
+      </div>
+      <div class="flip-card-back has-field">
+        <div class="back-section">
+          <div class="back-label">Description</div>
+          <div class="back-value">Hands-on ROV driver training on a closed range. Approximately 3 hours of driving time.</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Room</div>
+          <div class="back-value room">TBD (Field Site)</div>
+        </div>
+        <div class="back-section back-field-day">
+          <div class="back-label">🔥 Field Day</div>
+          <div class="back-value">Wed PM</div>
+        </div>
+        <div class="back-section">
+          <div class="back-label">Prework</div>
+          <div class="back-value prework-yes">Yes</div>
+        </div>
+        <div class="flip-hint">Tap to close ←</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<!-- SCHEDULE -->
+<div class="section" id="schedule">
+  <div class="section-title">Daily Schedule</div>
+
+  <div class="card gold">
+    <div class="card-label">ICP Check-In · Room 111, GIEC (Bldg 100)</div>
+    <div class="card-title">Check-In Hours</div>
+    <table class="icp-table" style="margin-top:8px;">
+      <thead><tr><th>Day</th><th>Hours</th></tr></thead>
+      <tbody>
+        <tr><td>Sun, June 7</td><td>3:00 PM – 7:00 PM</td></tr>
+        <tr><td>Mon, June 8</td><td>6:30 AM – 7:00 PM</td></tr>
+        <tr><td>Tue, June 9</td><td>6:30 AM – 7:00 PM</td></tr>
+        <tr><td>Wed, June 10</td><td>6:30 AM – 5:00 PM*</td></tr>
+        <tr><td>Thu, June 11</td><td>7:00 AM – 7:00 PM</td></tr>
+        <tr><td>Fri, June 12</td><td>7:00 AM – 4:30 PM</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">* Wednesday on-call 5–7 PM due to BBQ. Security covers arrivals after 7 PM on all days.</div>
+  </div>
+
+  <!-- Schedule items have data-start and data-end in 24h minutes from midnight for highlighting -->
+  <div class="schedule-day">
+    <div class="day-header">Sunday, June 8 — Arrival Day</div>
+    <div class="schedule-item" data-date="2026-06-08" data-start="900" data-end="1140"><div class="schedule-time">3:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong>Room 111, GIEC (Building 100)</div></div>
+    <div class="schedule-item" data-date="2026-06-08" data-start="1140" data-end="1200"><div class="schedule-time">Evening</div><div class="schedule-desc"><strong>🏷 Silent Auction Set-Up</strong>Room 111, GIEC (Building 100) — open for browsing through Wednesday BBQ</div></div>
+    <div class="schedule-item" data-date="2026-06-08" data-start="1140" data-end="1439"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong>Security covers arrivals after hours</div></div>
+  </div>
+
+  <div class="schedule-day">
+    <div class="day-header">Monday–Tuesday · June 9–10</div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="390" data-end="480"><div class="schedule-time">6:30 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong>Room 111, GIEC (Building 100)</div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="480" data-end="720"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong>See Courses tab for your class</div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="720" data-end="780"><div class="schedule-time">12:00 PM</div><div class="schedule-desc"><strong>Lunch</strong>See Meals tab for plan details</div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="780" data-end="1020"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="1020" data-end="1140"><div class="schedule-time">5:00 PM</div><div class="schedule-desc"><strong>Sessions End</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-09" data-start="1140" data-end="1439"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong></div></div>
+  </div>
+
+  <div class="schedule-day">
+    <div class="day-header">Wednesday, June 11 — BBQ Night</div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="390" data-end="480"><div class="schedule-time">6:30 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="480" data-end="780"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="780" data-end="1020"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="1020" data-end="1200"><div class="schedule-time">5:00 PM</div><div class="schedule-desc"><strong>ICP On-Call Begins</strong>Limited staffing due to BBQ</div></div>
+    <div class="schedule-item" data-date="2026-06-11" data-start="1080" data-end="1439"><div class="schedule-time">Evening</div><div class="schedule-desc"><strong>🔥 Wednesday BBQ</strong>Silent Auction closes at the BBQ · Location TBD</div></div>
+  </div>
+
+  <div class="schedule-day">
+    <div class="day-header">Thursday, June 12</div>
+    <div class="schedule-item" data-date="2026-06-12" data-start="420" data-end="480"><div class="schedule-time">7:00 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-12" data-start="480" data-end="780"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-12" data-start="780" data-end="1020"><div class="schedule-time">1:00 PM</div><div class="schedule-desc"><strong>PM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-12" data-start="1140" data-end="1439"><div class="schedule-time">7:00 PM</div><div class="schedule-desc"><strong>ICP Check-In Closes</strong></div></div>
+  </div>
+
+  <div class="schedule-day">
+    <div class="day-header">Friday, June 13 — Final Day</div>
+    <div class="schedule-item" data-date="2026-06-13" data-start="420" data-end="480"><div class="schedule-time">7:00 AM</div><div class="schedule-desc"><strong>ICP Check-In Opens</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-13" data-start="480" data-end="780"><div class="schedule-time">8:00 AM</div><div class="schedule-desc"><strong>AM Sessions Begin</strong></div></div>
+    <div class="schedule-item" data-date="2026-06-13" data-start="990" data-end="1439"><div class="schedule-time">4:30 PM</div><div class="schedule-desc"><strong>Academy Concludes · ICP Closes</strong></div></div>
+  </div>
+
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<!-- MAP -->
+<div class="section" id="map">
+  <div class="section-title">Campus Map</div>
+  <div class="map-container">
+    <img class="map-image" src="https://www.garrettcollege.edu/images/campus-map.jpg" alt="Garrett College Campus Map" onerror="this.style.display='none'; document.getElementById('map-fallback').style.display='block';">
+    <div id="map-fallback" style="display:none; padding:20px; text-align:center; color:var(--text-muted); font-size:13px;">📍 <a href="https://www.google.com/maps/place/39%C2%B033'37.6%22N+79%C2%B020'42.1%22W" target="_blank">Open in Google Maps</a></div>
+    <a href="Campus Map.png" download style="display:block; background:var(--forest-green); color:var(--smoke-white); text-align:center; padding:10px; border-radius:6px; font-family:'Barlow Condensed', sans-serif; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; font-size:13px; margin-bottom:8px;">Download Campus Map</a>
+  </div>
+  <div class="section-title" style="margin-top:4px;">Key Locations</div>
+  <div class="building-grid">
+    <div class="building-chip highlight"><div class="building-num">100</div><div class="building-name">CEWD / GIEC<br><strong style="color:var(--ember-light);">Command · Rm 111</strong></div></div>
+    <div class="building-chip gold"><div class="building-num">400</div><div class="building-name">PAC Conference Center · Meals</div></div>
+    <div class="building-chip"><div class="building-num">1200</div><div class="building-name">Laker Hall · Dorms (Bundled)</div></div>
+    <div class="building-chip"><div class="building-num">900</div><div class="building-name">CARC · Aquatics &amp; Fitness</div></div>
+    <div class="building-chip"><div class="building-num">800</div><div class="building-name">Special Events Center</div></div>
+    <div class="building-chip"><div class="building-num">1100</div><div class="building-name">Garrett Hall</div></div>
+    <div class="building-chip"><div class="building-num">500</div><div class="building-name">Learning Commons / Library</div></div>
+    <div class="building-chip"><div class="building-num">300</div><div class="building-name">Information Technology</div></div>
+  </div>
+  <div class="placeholder" style="margin-top:14px;">✏️ Classroom and field site assignments will be posted here after May 14th.</div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<!-- MEALS -->
+<div class="section" id="meals">
+  <div class="section-title">Meals</div>
+  <div class="card gold">
+    <div class="card-label">Dining Location</div>
+    <div class="card-title">PAC Conference Center — Building 800</div>
+    <div class="card-body">All on-campus meals served here unless otherwise noted on the daily schedule.</div>
+  </div>
+  <div class="section-title" style="font-size:17px; color:var(--ember-light);">Meal Plan Comparison</div>
+  <div class="meal-plan-header">
+    <div>Meal</div><div>🏕 Bundled</div><div>🚗 Commuter</div>
+  </div>
+  <div class="meal-row"><div>Breakfast</div><div class="meal-yes">✓ Included</div><div class="meal-no">✗ Own plan</div></div>
+  <div class="meal-row"><div>Lunch</div><div class="meal-yes">✓ Included</div><div class="meal-yes">✓ Full days</div></div>
+  <div class="meal-row"><div>Dinner</div><div class="meal-yes">✓ Included</div><div class="meal-no">✗ Own plan</div></div>
+  <div class="meal-row"><div>Wed BBQ</div><div class="meal-special">🔥 Included</div><div class="meal-special">🔥 Incl.*</div></div>
+  <div class="meal-row"><div>Lodging</div><div class="meal-yes">✓ Included</div><div class="meal-no">✗ Not incl.</div></div>
+  <div style="font-size:11px; color:var(--text-muted); margin-top:8px; padding: 0 2px;">* Commuter BBQ inclusion applies to certain courses. Confirm at check-in.</div>
+  <hr class="divider">
+  <div class="info-row">
+    <div class="info-icon">☕</div>
+    <div><div class="info-label">Coffee / Snacks</div><div class="info-value">Available in the Command Center</div><div class="info-sub">Room 111, Building 100 — GIEC</div></div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">🔥</div>
+    <div><div class="info-label">Wednesday BBQ</div><div class="info-value">Evening event — CARC Gymnasium — Building 950</div><div class="info-sub">Silent Auction closes at the BBQ</div></div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">🥗</div>
+    <div><div class="info-label">Dietary Needs / Allergies</div><div class="info-value">Contact the Command Center</div><div class="info-sub"><a href="tel:3013873026">(301) 387-3026</a></div></div>
+  </div>
+  <div class="placeholder">✏️ Add specific meal times closer to the event.</div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<!-- HOUSING -->
+<div class="section" id="housing">
+  <div class="section-title">Housing</div>
+  <div class="info-box">This section is for <strong>Bundled Package</strong> students only. Commuter students manage their own lodging arrangements.</div>
+  <div class="card blue">
+    <div class="card-label">Dorm Locations</div>
+    <div class="card-title">Laker Hall — Building 1200</div>
+    <div class="card-title">Garrett Hall — Building 1100</div>
+    <div class="card-body">Northeast area of campus. Follow signs from the main entrance off Mosser Road.</div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">🏠</div>
+    <div><div class="info-label">Check-In</div><div class="info-value">Sunday, June 8 · 3:00 PM onward</div><div class="info-sub">Check in at ICP (Room 111, Bldg 100) first to receive keys</div></div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">🚪</div>
+    <div><div class="info-label">Check-Out</div><div class="info-value">Check out time varies according to course end</div><div class="info-sub">Return keys to any dorm lobby drop-box or the ICP Room 111 registration table</div></div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">🔑</div>
+    <div><div class="info-label">After-Hours Access</div><div class="info-value">Contact Campus Security <a href="tel:2403215799">(240) 321-5799</a></div></div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">🧺</div>
+    <div><div class="info-label">Laundry</div><div class="info-value">To ensure your stay is comfortable, please remember to pack your own linens. This includes sheets, pillow cases, and blankets or sleeping bags, as well as towels and washcloths. Please note that laundry service will not be available during the event.</div></div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">🏊</div>
+    <div><div class="info-label">Pool / Fitness Center</div><div class="info-value">CARC — Building 900. $7.50/day pass</div><div class="info-sub"><a href="http://www.gccarc.com/" target="_blank">gccarc.com</a> for hours and details</div></div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">📞</div>
+    <div><div class="info-label">Housing Questions</div><div class="info-value">Visit the Command Center, or call</div><div class="info-sub"><a href="tel:3013873026">(301) 387-3026</a></div></div>
+  </div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<!-- WIFI -->
+<div class="section" id="wifi">
+  <div class="section-title">WiFi &amp; Tech</div>
+  <div class="wifi-box">
+    <div class="wifi-icon">📶</div>
+    <div class="wifi-network">Guest Network</div>
+    <div class="wifi-value" id="wifi-network-name">TBD</div>
+    <button class="copy-btn" id="copy-network-btn" onclick="copyWifi('network')">📋 Copy Network Name</button>
+    <div class="wifi-network">Password</div>
+    <div class="wifi-value" id="wifi-password-value">TBD</div>
+    <button class="copy-btn" id="copy-password-btn" onclick="copyWifi('password')">📋 Copy Password</button>
+    <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">WiFi credentials will be released by IT closer to June. Check back here for updates.</div>
+  </div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<!-- NEARBY -->
+<div class="section" id="nearby">
+  <div class="section-title">Nearby</div>
+
+  <div class="section-title" style="font-size:17px; color:var(--ember-light); margin-top:0;">🍔 Restaurants</div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍕 Mountain State Brewing Co.</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~5 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍺 Brewery and the Beast</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · Accident MD · ~10 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍔 McDonald's</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">McHenry MD · ~7 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍺 The Green Turtle</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~2 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍕 MoonShadow</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Vegan, Vegetarian, &amp; Gluten-Free Options · McHenry MD · ~1 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🍺 Ace's Run Restaurant &amp; Pub</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · McHenry MD · ~2 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🌮 Baja Street Tacos &amp; Wings</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Bar &amp; grill · Oakland MD · ~20 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>✏️ Restaurant Placeholder</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail" style="color:var(--ash-gold); font-style:italic;">Add name, type, location, and drive time here.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title" style="font-size:17px; color:var(--ember-light);">🛒 Shopping &amp; Essentials</div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🛒 Walmart Supercenter</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Grocery / General · Oakland MD · ~15 min drive · 6 AM – 11 PM</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>💊 CVS Pharmacy</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Oakland MD · ~15 min drive · 9 AM – 8 PM</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>⛽ BFS Gas Station</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">McHenry MD · ~1 min drive · Open 24/7</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title" style="font-size:17px; color:var(--ember-light);">🌲 Garrett County Attractions</div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🏕 Deep Creek State Park</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Swimming, hiking, and fishing on Deep Creek Lake · McHenry MD · ~10 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>💧 Swallow Falls State Park</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Home to Maryland's tallest free-falling waterfall! Don't forget to visit Muddy Creek Falls while you're there. · Oakland MD · ~20 min drive</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-btn" onclick="toggleAccordion(this)">
+      <span>🎨 Spruce Forest Artisan Village</span><span class="accordion-arrow">▼</span>
+    </button>
+    <div class="accordion-body">
+      <div class="restaurant-detail">Working artisan shops in a historic village setting · Grantsville MD · ~30 min drive</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:14px;">More things to do near Deep Creek Lake: <a href="https://www.visitdeepcreek.com/" target="_blank">visitdeepcreek.com</a></div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<!-- COMMAND -->
+<div class="section" id="command">
+  <div class="section-title">Command Center</div>
+  <div class="card">
+    <div class="card-label">Location</div>
+    <div class="card-title">Room 111 · GIEC (Building 100)</div>
+    <div class="card-body">Check-in for all students, instructors, and staff. Coffee available. Home of the silent auction and MAFA/GC staff.<br><br><strong>Phone:</strong> <a href="tel:3013873026">(301) 387-3026</a><br><strong>Email:</strong> fireacademy@garrettcollege.edu</div>
+  </div>
+  <div class="section-title" style="font-size:17px; color:var(--ember-light);">Command Staff</div>
+  <div class="contact-card"><div class="contact-avatar command">🔥</div><div><div class="contact-name">Mike Boyce</div><div class="contact-role">Incident Commander (IC)</div></div></div>
+  <div class="contact-card"><div class="contact-avatar">🛡</div><div><div class="contact-name">Brian Plume</div><div class="contact-role">Safety Officer · PAS</div></div></div>
+  <div class="contact-card"><div class="contact-avatar">⚠️</div><div><div class="contact-name">Christopher Franek</div><div class="contact-role">Field Safety Officer</div><div class="contact-info">📞 <a href="tel:6093492490">(609) 349-2490</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar">📢</div><div><div class="contact-name">Cecile Stelter</div><div class="contact-role">Public Information Officer · PAS</div><div class="contact-info">📞 <a href="tel:8146887133">(814) 688-7133</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar">🔗</div><div><div class="contact-name">Chip Broadwater</div><div class="contact-role">Liaison Officer</div></div></div>
+  <div class="contact-card"><div class="contact-avatar">📋</div><div><div class="contact-name">Lewis Bailey</div><div class="contact-role">Plans Chief / Resources Unit</div></div></div>
+  <div class="contact-card"><div class="contact-avatar">📚</div><div><div class="contact-name">Cameron Crisp</div><div class="contact-role">Training Specialist</div></div></div>
+  <div class="contact-card"><div class="contact-avatar">🚛</div><div><div class="contact-name">Tim Cole</div><div class="contact-role">Logistics Chief · MDS</div><div class="contact-info">📞 <a href="tel:2403214591">(240) 321-4591</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar">🏥</div><div><div class="contact-name">Gilbert Wagner</div><div class="contact-role">Lead EMT</div><div class="contact-info">📞 <a href="tel:4437906938">(443) 790-6938</a></div></div></div>
+  <div class="section-title" style="font-size:17px; color:var(--ember-light);">Garrett College Staff</div>
+  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Julie Yoder · Dean of CEWD</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873101">(301) 387-3101</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Sarah Friend · Coordinator of Operations</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873064">(301) 387-3064</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar gc">🌲</div><div><div class="contact-name">Kim Govi · Instructor Liaison / Coordinator of Contract Training</div><div class="contact-role">Garrett College</div><div class="contact-info">📞 <a href="tel:3013873084">(301) 387-3084</a></div></div></div>
+  <div class="section-title" style="font-size:17px; color:var(--ember-light);">Emergency Contacts</div>
+  <div class="contact-card"><div class="contact-avatar command">🚑</div><div><div class="contact-name">Garrett Regional Medical Center</div><div class="contact-role">Nearest Hospital · Oakland, MD</div><div class="contact-info">251 North Fourth Street · <a href="tel:3015332121">(301) 533-2121</a></div></div></div>
+  <div class="contact-card"><div class="contact-avatar command">🚒</div><div><div class="contact-name">Emergency Services</div><div class="contact-role">Police / Fire / EMS</div><div class="contact-info">📞 <a href="tel:911">911</a> &nbsp;·&nbsp; Campus Security: <a href="tel:2403215799">(240) 321-5799</a></div></div></div>
+  <button class="back-to-top" onclick="scrollToTop()">↑ Back to Top</button>
+</div>
+
+<div class="footer">
+  Mid-Atlantic Wildfire Training Academy · June 8-12, 2026<br>
+  Hosted by Garrett College · McHenry, MD<br>
+  fireacademy@garrettcollege.edu
+</div>
+
+<script>
+  // ── TAB NAVIGATION ──────────────────────────────────────────────
+  const order = ["home","courses","schedule","map","meals","housing","wifi","nearby","command"];
+  function showSection(id) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.querySelectorAll(".nav-tab")[order.indexOf(id)].classList.add("active");
+    window.scrollTo(0, 0);
+  }
+
+  function toggleAccordion(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+
+    // Close all open accordions first
+    document.querySelectorAll('.accordion-btn.open').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
+
+    // If it was closed, open it
+    if (!isOpen) {
+      btn.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+
+  // ── FLIP CARD FUNCTION ──────────────────────────────────────────
+  function flipCard(card) {
+    // Close any other open flip cards first
+    document.querySelectorAll('.flip-card.flipped').forEach(c => {
+      if (c !== card) c.classList.remove('flipped');
+    });
+    // Toggle this card
+    card.classList.toggle('flipped');
+  }
+
+  // ── BACK TO TOP ─────────────────────────────────────────────────
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── COUNTDOWN TIMER ─────────────────────────────────────────────
+  // Target: June 8, 2026 at midnight (12:00 AM)
+  const academyStart = new Date('2026-06-08T00:00:00');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = academyStart - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown-display').innerHTML =
+        '<div class="countdown-started">🔥 Academy Is Underway!</div>';
+      return;
+    }
+
+    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── SCHEDULE HIGHLIGHTING ────────────────────────────────────────
+  // Each schedule-item has data-date (YYYY-MM-DD) and data-start / data-end
+  // in minutes since midnight (e.g. 8:00 AM = 480)
+  function highlightSchedule() {
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+    const nowMins = now.getHours() * 60 + now.getMinutes();
+
+    document.querySelectorAll('.schedule-item').forEach(item => {
+      item.classList.remove('current-event');
+      // Remove any existing NOW badge
+      const existing = item.querySelector('.now-badge');
+      if (existing) existing.remove();
+
+      const itemDate  = item.dataset.date;
+      const itemStart = parseInt(item.dataset.start, 10);
+      const itemEnd   = parseInt(item.dataset.end, 10);
+
+      if (itemDate === todayStr && nowMins >= itemStart && nowMins < itemEnd) {
+        item.classList.add('current-event');
+        const badge = document.createElement('span');
+        badge.className = 'now-badge';
+        badge.textContent = 'NOW';
+        const strong = item.querySelector('.schedule-desc strong');
+        if (strong) strong.appendChild(badge);
+      }
+    });
+  }
+  highlightSchedule();
+  setInterval(highlightSchedule, 60000); // refresh every minute
+
+  // ── WIFI COPY BUTTONS ───────────────────────────────────────────
+  // UPDATE these two values when IT provides credentials in late May
+  const WIFI_NETWORK  = 'TBD';   // <-- replace with actual network name
+  const WIFI_PASSWORD = 'TBD';   // <-- replace with actual password
+
+  function copyWifi(type) {
+    const value  = type === 'network' ? WIFI_NETWORK : WIFI_PASSWORD;
+    const btnId  = type === 'network' ? 'copy-network-btn' : 'copy-password-btn';
+    const btn    = document.getElementById(btnId);
+
+    if (value === 'TBD') {
+      btn.textContent = '⏳ Not Available Yet';
+      setTimeout(() => {
+        btn.textContent = type === 'network' ? '📋 Copy Network Name' : '📋 Copy Password';
+      }, 2000);
+      return;
+    }
+
+    navigator.clipboard.writeText(value).then(() => {
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = type === 'network' ? '📋 Copy Network Name' : '📋 Copy Password';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      // Fallback for browsers that block clipboard without HTTPS
+      btn.textContent = '⚠️ Copy manually above';
+      setTimeout(() => {
+        btn.textContent = type === 'network' ? '📋 Copy Network Name' : '📋 Copy Password';
+      }, 2500);
+    });
+  }
+</script>
+
+<!-- SERVICE WORKER REGISTRATION (offline capability) -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('MAFA: offline mode ready'))
+        .catch(err => console.log('SW registration failed:', err));
+    });
+  }
+</script>
+
+</body>
+</html>
