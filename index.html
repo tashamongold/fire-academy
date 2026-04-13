@@ -239,7 +239,7 @@
   <button class="nav-tab" onclick="showSection('schedule')">Schedule</button>
   <button class="nav-tab" onclick="showSection('map')">Map</button>
   <button class="nav-tab" onclick="showSection('meals')">Meals</button>
-  <button class="nav-tab" onclick="showSection('housing')">Housing</button>
+  <button class="nav-tab" onclick="showHousing()">Housing</button>
   <button class="nav-tab" onclick="showSection('wifi')">WiFi</button>
   <button class="nav-tab" onclick="showSection('nearby')">Nearby</button>
   <button class="nav-tab" onclick="showSection('command')">Command</button>
@@ -281,6 +281,7 @@
       <span class="badge sage" onclick="showSection('meals')">🍽 Meals</span>
       <span class="badge blue" onclick="showSection('wifi')">📶 WiFi</span>
       <span class="badge" onclick="showSection('command')">📋 Command</span>
+      <a href="IAP.pdf" download class="badge gold" style="text-decoration:none;">📄 IAP</a>
     </div>
   </div>
   <div class="card">
@@ -1061,6 +1062,13 @@
 <!-- COMMAND -->
 <div class="section" id="command">
   <div class="section-title">Command Center</div>
+  <div class="card gold">
+    <div class="card-label">Download</div>
+    <div class="card-title">📄 Incident Action Plan (IAP)</div>
+    <div class="card-body">
+      <a href="IAP.pdf" download style="display:inline-block; background:var(--ember); color:var(--white); padding:10px 18px; border-radius:6px; font-family:'Barlow Condensed', sans-serif; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; font-size:13px; text-decoration:none; margin-top:8px;">Download IAP</a>
+    </div>
+  </div>
   <div class="card">
     <div class="card-label">Location</div>
     <div class="card-title">Room 111 · GIEC (Building 100)</div>
@@ -1226,6 +1234,27 @@
       }, 2500);
     });
   }
+  // ── HOUSING POPUP ─────────────────────────────────────────────
+let housingPopupShown = false;
+
+function showHousing() {
+  showSection('housing');
+  if (!housingPopupShown) {
+    document.getElementById('housing-popup').style.display = 'flex';
+    housingPopupShown = true;
+  }
+}
+
+function closeHousingPopup() {
+  document.getElementById('housing-popup').style.display = 'none';
+}
+
+// Close popup when clicking outside the box
+document.getElementById('housing-popup').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeHousingPopup();
+  }
+});
 </script>
 
 <!-- SERVICE WORKER REGISTRATION (offline capability) -->
@@ -1238,6 +1267,13 @@
     });
   }
 </script>
-
+<div id="housing-popup" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:999; display:none; align-items:center; justify-content:center; padding:20px;">
+  <div style="background:var(--forest-deep); border-radius:12px; padding:20px; max-width:340px; border-top:4px solid var(--ember); position:relative;">
+    <div style="font-family:'Barlow Condensed', sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ember-light); margin-bottom:8px;">📢 Housing Reminder</div>
+    <div style="font-size:14px; color:var(--smoke-white); line-height:1.6; margin-bottom:16px;">Linens will not be provided. Please bring your own towels, washcloths, and bedding (sheets, pillowcase, and blanket). A bathmat will be provided.</div>
+    <button onclick="closeHousingPopup()" style="width:100%; background:var(--ember); color:var(--white); border:none; border-radius:6px; padding:12px; font-family:'Barlow Condensed', sans-serif; font-size:14px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer;">Got It</button>
+  </div>
+</div>
+  
 </body>
 </html>
